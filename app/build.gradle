@@ -8,6 +8,10 @@ android {
     namespace 'com.example.bunkerburgerblind'
     compileSdk 32
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId "com.example.bunkerburgerblind"
         minSdk 21
