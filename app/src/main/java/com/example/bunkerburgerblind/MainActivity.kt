@@ -1,16 +1,9 @@
 package com.example.bunkerburgerblind
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import androidx.appcompat.app.AlertDialog
-import com.example.bunkerburgerblind.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -21,42 +14,43 @@ class MainActivity : AppCompatActivity() {
     private val database = Firebase.database
     private val myRef = database.getReference("bunkerburger")
 
-    private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        binding.orderSet.setOnClickListener {
-            //Dialog 만들기
-            val mDialogView = LayoutInflater.from(this).inflate(R.layout.set_choice, null)
-            val mBuilder = AlertDialog.Builder(this)
-                .setView(mDialogView)
-                .setTitle("세트 주문하기")
+        val menuList: RecyclerView = findViewById(R.id.listMenu)
+        val list = ArrayList<MenuType>()
 
-            val mAlertDialog = mBuilder.show()
 
-            val noButton = mDialogView.findViewById<Button>(R.id.cancel_button)
-            noButton.setOnClickListener {
-                mAlertDialog.dismiss()
-            }
-        }
+//        Glide.with(this).load("https://ldb-phinf.pstatic.net/20220107_149/1641535879331Y3VVF_JPEG/m7-tZh3kBAfKUHokT7UsZyZWa4GkX4MXrbfUhwG4ggIEA6OlRRPP757-ZSotLIJa.jpg").into(imageView1);
 
-        myRef.addValueEventListener(object: ValueEventListener{
+        myRef.addValueEventListener(object: ValueEventListener {
+
             override fun onDataChange(snapshot: DataSnapshot) {
-                val test = snapshot.child("menu")
-                for (ds in test.children) {
-                    Log.e("스냅", ds.toString())
+                val menu = snapshot.child("menu")
+                val test = snapshot.child("menu").child("burger")
+
+                for (item in menu.child("beverage").children) {
+                    Log.d("로그", item.toString())
+                    val burger = item.getValue(MenuType::class.java)
+                    burger?.let {
+                        Log.d("햄버거 id", it.id.toString())
+                        Log.d("햄버거 이름", it.name)
+                        Log.d("햄버거 가격", it.price.toString())
+                        Log.d("햄버거 설명", it.stock.toString())}
+                    burger?.let { list.add(it) }
                 }
+
+                val adapter = RecyclerUserAdapter(list)
+                menuList.adapter = adapter
             }
+
 
             override fun onCancelled(error: DatabaseError) {
                 Log.e("실패", "실패")
             }
         })
     }
-
 }
