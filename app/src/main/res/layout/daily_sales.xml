@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+
+        android:text="1일 판매 수량 보기"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="@color/purple_500"/>
+
+    <Button
+        android:id="@+id/goback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/man_main_btn_background"
+        android:paddingHorizontal="30dp"
+        android:layout_marginVertical="5dp"
+
+        android:textSize="20dp"
+        android:text="뒤로가기" />
+
+
+    <RadioGroup
+        android:id="@+id/daily_radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <RadioButton
+                    android:id="@+id/dailySalesShowAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginRight="10dp"
+                    android:checked="true"
+
+                    android:text="전체 보기"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/purple_500"/>
+
+                <RadioButton
+                    android:id="@+id/dailySalesShowSingle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginRight="10dp"
+
+
+                    android:text="단품만 보기"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/purple_500"/>
+
+                <RadioButton
+                    android:id="@+id/dailySalesShowSet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="세트만 보기"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/purple_500"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <RadioButton
+                    android:id="@+id/dailySalesShowSide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginRight="15dp"
+
+                    android:text="사이드만 보기"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/purple_500"/>
+
+                <RadioButton
+                    android:id="@+id/dailySalesShowDrink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="음료만 보기"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/purple_500"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RadioGroup>
+
+    <!-- 구분선 -->
+    <View
+        android:background="@color/purple_500"
+        android:layout_width="match_parent"
+        android:layout_height="12px"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/Classic_single"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="클래식 버거"/>
+
+            <Button
+                android:id="@+id/DoubleCheese_single"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="더블치즈 해쉬브라운버거"/>
+
+            <Button
+                android:id="@+id/BBQ_single"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="BBQ버거"/>
+
+            <Button
+                android:id="@+id/Original_single"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="오리지날버거"/>
+
+            <Button
+                android:id="@+id/MacCheese_single"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="맥 앤 치즈버거"/>
+
+            <Button
+                android:id="@+id/Chili_single"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="칠리버거"/>
+
+            <!-- 사이드 -->
+
+            <Button
+                android:id="@+id/House_potato"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="하우스감자"/>
+
+            <Button
+                android:id="@+id/Chili_potato"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="칠리감자"/>
+
+            <Button
+                android:id="@+id/Salsa_potato"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="살사감자"/>
+
+            <Button
+                android:id="@+id/Salad"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="꽃맛살 샐러드"/>
+
+            <Button
+                android:id="@+id/FrenchFries"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="감자튀김"/>
+
+            <Button
+                android:id="@+id/Seasoned_potato"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="양념감자"/>
+
+            <Button
+                android:id="@+id/Fried_onion"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="양파튀김"/>
+
+            <Button
+                android:id="@+id/Hashbrown"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="해쉬브라운"/>
+
+            <!-- Drink -->
+
+            <Button
+                android:id="@+id/Coke"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="콜라"/>
+
+            <Button
+                android:id="@+id/Cider"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="사이다"/>
+
+            <Button
+                android:id="@+id/Milk_shake"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="밀크쉐이크"/>
+
+            <!-- Ade -->
+
+            <Button
+                android:id="@+id/Grape"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="청포도"/>
+
+            <Button
+                android:id="@+id/Grapefruit"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="자몽"/>
+
+            <Button
+                android:id="@+id/Lemon"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:background="@drawable/man_main_btn_background"
+                android:elevation="10dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="15dp"
+
+                android:textSize="30dp"
+                android:textStyle="bold"
+
+                android:textColor="@color/white"
+                android:text="레몬"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:padding="10dp"
+
+                android:textSize="30dp"
+                android:text="화면 끝" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/salesQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:paddingTop="15dp"
+            android:paddingBottom="5dp"
+
+            android:background="@color/black"
+            android:textColor="@color/white"
+
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="총 판매 수량 ( )" />
+
+        <TextView
+            android:id="@+id/salesPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:paddingTop="5dp"
+            android:paddingBottom="15dp"
+
+            android:background="@color/black"
+            android:textColor="@color/white"
+
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="총 판매 금액 ( )" />
+
+    </LinearLayout>
+
+</LinearLayout>

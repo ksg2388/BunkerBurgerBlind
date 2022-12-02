@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/drawable/edit_menu_detail.xml" value="0.1935" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/drawable/man_main_btn_background.xml" value="0.1" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/drawable/pwd_input_background.xml" value="0.1" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/drawable/pwd_submit_background.xml" value="0.1" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/drawable/total_sales.xml" value="0.1" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/daily_sales.xml" value="0.1" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/daily_sales_item.xml" value="0.1" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/daily_sales_main.xml" value="0.1" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/edit_menu_detail.xml" value="0.16666666666666666" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/inventory_dialog.xml" value="0.1" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/inventory_status.xml" value="0.10461956521739131" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/inventory_status_item.xml" value="0.17426545086119555" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/inventory_status_main.xml" value="0.17426545086119555" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/man_main.xml" value="0.1" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/man_pwd.xml" value="0.1" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/manage_menu.xml" value="0.10461956521739131" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/manage_menu_item.xml" value="0.35833333333333334" />
+        <entry key="..\:/KNU/2022/20222/MobileAppProgramming/TeamProject/BunkerBurgerBlind/app/src/main/res/layout/manage_menu_main.xml" value="0.35833333333333334" />
+      </map>
+    </option>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
