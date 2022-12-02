@@ -1,21 +1,20 @@
 package com.example.bunkerburgerblind
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bunkerburgerblind.databinding.DailySalesItemBinding
-import com.example.bunkerburgerblind.databinding.InventoryStatusBinding
 import com.example.bunkerburgerblind.databinding.InventoryStatusItemBinding
 import com.example.bunkerburgerblind.databinding.InventoryStatusMainBinding
-import android.text.SpannableString as SpannableString1
 
 class InventoryStatusActivity : AppCompatActivity() {
     lateinit var goBack : Button
@@ -32,6 +31,10 @@ class InventoryStatusActivity : AppCompatActivity() {
         goBack.setOnClickListener {
             finish()
         }
+
+        // 다이얼로그
+        val dialog = InventoryDialog(this)
+        dialog.myDig()
 
         // 재고 버튼
         val data = mutableListOf<String>()
@@ -75,7 +78,11 @@ class InventoryStatusActivity : AppCompatActivity() {
 
             // 뷰에 이벤트 추가
             binding.inventoryItemRoot.setOnClickListener {
-                Log.d("RecyclerView", "item root click: $dataSet{position}")
+                Log.d("RecyclerView", "item root click: $dataSet")
+            }
+
+            binding.inventoryItemData.setOnClickListener {
+                Log.d("my", "${dataSet[position]} clicked")
             }
         }
 
@@ -84,4 +91,19 @@ class InventoryStatusActivity : AppCompatActivity() {
             return dataSet.size
         }
     }
+
+    // 다이얼로그 클래스
+    class InventoryDialog(context: Context) {
+        private val dialog = Dialog(context)
+
+        fun myDig() {
+            dialog.show()
+        }
+
+        fun MyDig() {
+            dialog.setContentView(R.layout.inventory_dialog)
+        }
+    }
+
+
 }

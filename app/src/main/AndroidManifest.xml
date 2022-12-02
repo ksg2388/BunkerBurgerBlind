@@ -27,10 +27,13 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".ManPWActivity" android:label="ManageMenuActivity" />
         <activity android:name=".ManMainActivity" android:label="ManMainActivity" />
         <activity android:name=".DailySalesActivity" android:label="DailySalesActivity" />
         <activity android:name=".InventoryStatusActivity" android:label="InventoryStatusActivity" />
         <activity android:name=".ManageMenuActivity" android:label="ManageMenuActivity" />
+        <activity android:name=".EditMenuActivity" android:label="EditMenuActivity" />
+
 
 
     </application>

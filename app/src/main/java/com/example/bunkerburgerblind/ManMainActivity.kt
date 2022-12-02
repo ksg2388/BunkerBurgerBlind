@@ -31,7 +31,5 @@ class ManMainActivity : AppCompatActivity() {
             val intent = Intent(this, ManageMenuActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 }

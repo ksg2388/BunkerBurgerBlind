@@ -19,115 +19,107 @@
             android:layout_marginBottom="10dp"
             android:gravity="center"
 
-            android:text="1일 판매 수량 보기"
+            android:text="메뉴 관리하기"
             android:textColor="@color/purple_500"
             android:textSize="40dp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/goback"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
 
-            android:layout_marginVertical="5dp"
-            android:background="@drawable/man_main_btn_background"
-            android:paddingHorizontal="30dp"
+            <Button
+                android:id="@+id/goback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-            android:text="뒤로가기"
-            android:textSize="20dp" />
+                android:layout_marginRight="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/man_main_btn_background"
+                android:paddingHorizontal="30dp"
 
+                android:text="뒤로가기"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/addMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginLeft="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/man_main_btn_background"
+                android:paddingHorizontal="30dp"
+
+                android:text="추가하기"
+                android:textSize="20dp" />
+
+        </LinearLayout>
 
         <RadioGroup
-            android:id="@+id/daily_radioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:id="@+id/manage_radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <RadioButton
+                android:id="@+id/manageSalesShowAll"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginRight="10dp"
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                android:checked="true"
 
-                    <RadioButton
-                        android:id="@+id/dailySalesShowAll"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                android:text="전체 보기"
+                android:textColor="@color/purple_500"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-                        android:checked="true"
-                        android:onClick="onRadioButtonClicked"
+            <RadioButton
+                android:id="@+id/manageSalesShowSingle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
 
-                        android:text="전체 보기"
-                        android:textColor="@color/purple_500"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                android:text="단품만 보기"
+                android:textColor="@color/purple_500"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-                    <RadioButton
-                        android:id="@+id/dailySalesShowSingle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+            <RadioButton
+                android:id="@+id/manageSalesShowSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
 
-                        android:onClick="onRadioButtonClicked"
+                android:text="세트만 보기"
+                android:textColor="@color/purple_500"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
+            <RadioButton
+                android:id="@+id/manageSalesShowSide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
 
-                        android:text="단품만 보기"
-                        android:textColor="@color/purple_500"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                android:text="사이드만 보기"
+                android:textColor="@color/purple_500"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-                    <RadioButton
-                        android:id="@+id/dailySalesShowSet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
+            <RadioButton
+                android:id="@+id/manageSalesShowDrink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-                        android:text="세트만 보기"
-                        android:textColor="@color/purple_500"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/dailySalesShowSide"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-
-                        android:onClick="onRadioButtonClicked"
-
-                        android:text="사이드만 보기"
-                        android:textColor="@color/purple_500"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-                    <RadioButton
-                        android:id="@+id/dailySalesShowDrink"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
-
-                        android:text="음료만 보기"
-                        android:textColor="@color/purple_500"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:text="음료만 보기"
+                android:textColor="@color/purple_500"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
         </RadioGroup>
 

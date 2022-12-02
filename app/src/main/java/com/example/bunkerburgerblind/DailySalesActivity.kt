@@ -1,6 +1,5 @@
 package com.example.bunkerburgerblind
 
-import android.content.ClipData
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,8 +16,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import java.text.FieldPosition
 
 data class ItemView(val image : Int, val name : String, val quantity : Int, val price : Int)
 
@@ -25,6 +25,7 @@ class DailySalesActivity : AppCompatActivity() {
     val database = Firebase.database
     val myRef = database.getReference("bunkerburger")
     lateinit var goBack : Button
+    lateinit var radioGroup : RadioGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,9 +46,27 @@ class DailySalesActivity : AppCompatActivity() {
         })
 
 
+        // 버거 데이터 받아오기 - 데이터베이스 연동 안됨
+        myRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                Log.d("my", "test")
+                val burgerdata = snapshot.child("menu").child("burger")
+                for (item in burgerdata.children) {
+                    Log.e("스냅", item.toString())
+                    val burger = item.getValue(MenuType::class.java)
+                    Log.d("my", "${burger?.name}")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("실패", "실패")
+            }
+        })
+
         val recyclerView : RecyclerView = findViewById(R.id.daily_recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        // 임의로 데이터 추가 - 수정 필요
         val burger = ArrayList<ItemView>()
         val side = ArrayList<ItemView>()
         val drink = ArrayList<ItemView>()
@@ -66,9 +85,34 @@ class DailySalesActivity : AppCompatActivity() {
         all.addAll(side)
         all.addAll(drink)
 
-        val adapter = DailyAdapter(all)
+        // ---------------
 
-        recyclerView.adapter = adapter
+        recyclerView.adapter = DailyAdapter(all)
+
+        radioGroup = findViewById(R.id.daily_radioGroup)
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            Log.d("my", "클릭됨")
+            if (checkedId == R.id.dailySalesShowAll) {
+                Log.d("my", "전체 보기")
+                recyclerView.adapter = DailyAdapter(all)
+
+            } else if (checkedId == R.id.dailySalesShowSet) {
+                Log.d("my", "단품만 보기")
+                recyclerView.adapter = DailyAdapter(all)
+
+            } else if (checkedId == R.id.dailySalesShowSingle) {
+                Log.d("my", "단품만 보기")
+                recyclerView.adapter = DailyAdapter(burger)
+
+            } else if (checkedId == R.id.dailySalesShowSide) {
+                Log.d("my", "사이드만 보기")
+                recyclerView.adapter = DailyAdapter(side)
+
+            } else if (checkedId == R.id.dailySalesShowDrink) {
+                Log.d("my", "음료만 보기")
+                recyclerView.adapter = DailyAdapter(drink)
+            }
+        }
 
         // 뒤로가기
         goBack = findViewById(R.id.goback)

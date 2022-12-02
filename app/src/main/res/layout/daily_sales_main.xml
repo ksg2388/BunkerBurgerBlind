@@ -36,98 +36,75 @@
             android:text="뒤로가기"
             android:textSize="20dp" />
 
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="here"/>
 
         <RadioGroup
             android:id="@+id/daily_radioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:gravity="center">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <RadioButton
+                android:id="@+id/dailySalesShowAll"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginRight="10dp"
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                android:checked="true"
 
-                    <RadioButton
-                        android:id="@+id/dailySalesShowAll"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+                android:text="전체 보기"
+                android:textColor="@color/purple_500"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-                        android:checked="true"
-                        android:onClick="onRadioButtonClicked"
+            <RadioButton
+                android:id="@+id/dailySalesShowSingle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
 
-                        android:text="전체 보기"
-                        android:textColor="@color/purple_500"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                android:text="단품만 보기"
+                android:textColor="@color/purple_500"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-                    <RadioButton
-                        android:id="@+id/dailySalesShowSingle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
+            <RadioButton
+                android:id="@+id/dailySalesShowSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
 
-                        android:onClick="onRadioButtonClicked"
+                android:text="세트만 보기"
+                android:textColor="@color/purple_500"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
+            <RadioButton
+                android:id="@+id/dailySalesShowSide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
 
-                        android:text="단품만 보기"
-                        android:textColor="@color/purple_500"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
+                android:text="사이드만 보기"
+                android:textColor="@color/purple_500"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-                    <RadioButton
-                        android:id="@+id/dailySalesShowSet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
+            <RadioButton
+                android:id="@+id/dailySalesShowDrink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-                        android:text="세트만 보기"
-                        android:textColor="@color/purple_500"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/dailySalesShowSide"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-
-                        android:onClick="onRadioButtonClicked"
-
-                        android:text="사이드만 보기"
-                        android:textColor="@color/purple_500"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-                    <RadioButton
-                        android:id="@+id/dailySalesShowDrink"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked"
-
-                        android:text="음료만 보기"
-                        android:textColor="@color/purple_500"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:text="음료만 보기"
+                android:textColor="@color/purple_500"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
         </RadioGroup>
 
