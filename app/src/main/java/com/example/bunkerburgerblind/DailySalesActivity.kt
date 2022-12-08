@@ -16,74 +16,65 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
-data class ItemView(val image : Int, val name : String, val quantity : Int, val price : Int)
+data class ItemView(val image: Int, val name: String, val quantity: Int, val price: Int)
 
 class DailySalesActivity : AppCompatActivity() {
     val database = Firebase.database
     val myRef = database.getReference("bunkerburger")
-    lateinit var goBack : Button
-    lateinit var radioGroup : RadioGroup
+    lateinit var goBack: Button
+    lateinit var radioGroup: RadioGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.daily_sales_main)
 
-        // 데이터 가져오기
-        myRef.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val test = snapshot.child("menu")
-                for (ds in test.children) {
-                    Log.e("스냅", ds.toString())
-                }
-            }
+        //1일 판매 수량 보기-> 전체보기 바로 출력 x, 다른 button 눌렀다가 전체보기 누르면 보임
+        //이미지 데이터 받아오기 필요
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("실패", "실패")
-            }
-        })
-
-
-        // 버거 데이터 받아오기 - 데이터베이스 연동 안됨
-        myRef.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("my", "test")
-                val burgerdata = snapshot.child("menu").child("burger")
-                for (item in burgerdata.children) {
-                    Log.e("스냅", item.toString())
-                    val burger = item.getValue(MenuType::class.java)
-                    Log.d("my", "${burger?.name}")
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("실패", "실패")
-            }
-        })
-
-        val recyclerView : RecyclerView = findViewById(R.id.daily_recyclerView)
+        val recyclerView: RecyclerView = findViewById(R.id.daily_recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // 임의로 데이터 추가 - 수정 필요
         val burger = ArrayList<ItemView>()
         val side = ArrayList<ItemView>()
         val drink = ArrayList<ItemView>()
         val all = ArrayList<ItemView>()
 
-        burger.add(ItemView(R.drawable.logo, "클래식버거", 100, 10000))
-        burger.add(ItemView(R.drawable.logo, "더블치즈 해쉬브라운버거", 200, 20000))
+        //DB연결
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
 
-        side.add(ItemView(R.drawable.logo, "하우스감자", 300, 30000))
-        side.add(ItemView(R.drawable.logo, "칠리감자", 400, 40000))
+                // 버거 데이터 받아오기
+                val burgerdata = snapshot.child("menu").child("burger")
+                for (item in burgerdata.children) {
+                    val burgers = item.getValue(MenuType::class.java)
+                    if (burgers != null) {
+                        burger.add(ItemView(R.drawable.logo, burgers.name, burgers.usage, burgers.price * burgers.usage)) } }
+                all.addAll(burger)
 
-        drink.add(ItemView(R.drawable.logo, "콜라", 500, 50000))
-        drink.add(ItemView(R.drawable.logo, "청포도에이드", 600, 60000))
+                // side 데이터 받아오기
+                val sidedata = snapshot.child("menu").child("side")
+                for (item in sidedata.children) {
+                    val sides = item.getValue(MenuType::class.java)
+                    if (sides != null) {
+                        side.add(ItemView(R.drawable.logo, sides.name, sides.usage, sides.price * sides.usage)) } }
+                all.addAll(side)
 
-        all.addAll(burger)
-        all.addAll(side)
-        all.addAll(drink)
+                // beverage 데이터 받아오기
+                val drinkdata = snapshot.child("menu").child("beverage")
+                for (item in drinkdata.children) {
+                    val drinks = item.getValue(MenuType::class.java)
+                    if (drinks != null) {
+                        drink.add(ItemView(R.drawable.logo, drinks.name, drinks.usage, drinks.price * drinks.usage)) } }
+                all.addAll(drink)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("DailySales_burger", "실패")
+            }
+        })
+
 
         // ---------------
 
@@ -120,23 +111,26 @@ class DailySalesActivity : AppCompatActivity() {
             finish()
         }
     }
+
     class DailyViewHolder(val layout: View) : RecyclerView.ViewHolder(layout) {
         // layout : daily_sales_item.xml 의 상위 레이아웃
 
         // daily_sales_item.xml의 각 View들을 멤버 변수와 연결
-        val imageView : ImageView = layout.findViewById(R.id.daily_item_image)
-        val nameView : TextView = layout.findViewById(R.id.daily_item_name)
-        val quantityView : TextView = layout.findViewById(R.id.daily_item_quantity)
-        val priceView : TextView = layout.findViewById(R.id.daily_item_price)
+        val imageView: ImageView = layout.findViewById(R.id.daily_item_image)
+        val nameView: TextView = layout.findViewById(R.id.daily_item_name)
+        val quantityView: TextView = layout.findViewById(R.id.daily_item_quantity)
+        val priceView: TextView = layout.findViewById(R.id.daily_item_price)
     }
 
-    class DailyAdapter(val dataList : List<ItemView>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-        override fun onCreateViewHolder(parent: ViewGroup, viewType : Int) : RecyclerView.ViewHolder {
+    class DailyAdapter(val dataList: List<ItemView>) :
+        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             // LayoutInflater 객체 가져오기
             val viewInflater = LayoutInflater.from(parent.context)
 
             // item.xml 레이아웃을 inflate() 시켜서 ViewHolder 생성자에 전달
-            val dailySalesItemLayout = viewInflater.inflate(R.layout.daily_sales_item, parent, false)
+            val dailySalesItemLayout =
+                viewInflater.inflate(R.layout.daily_sales_item, parent, false)
             return DailyViewHolder(dailySalesItemLayout)
         }
 

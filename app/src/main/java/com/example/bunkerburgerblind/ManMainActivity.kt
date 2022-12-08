@@ -11,6 +11,7 @@ class ManMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.man_main)
 
+
         // 1일 판매 수량 보기 페이지로 이동
         val dailySalesBtn = findViewById<Button>(R.id.manDailySalesQuantity)
         dailySalesBtn.setOnClickListener {
