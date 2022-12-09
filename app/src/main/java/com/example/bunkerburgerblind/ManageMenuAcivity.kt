@@ -24,7 +24,7 @@ import com.bumptech.glide.Glide
 import com.example.bunkerburgerblind.databinding.ManageMenuMainBinding
 import kotlin.collections.ArrayList
 
-class ManageMenuActivity : AppCompatActivity() {
+class ManageMenuAcivity : AppCompatActivity() {
     val database = Firebase.database
     val myRef = database.getReference("bunkerburger")
 
