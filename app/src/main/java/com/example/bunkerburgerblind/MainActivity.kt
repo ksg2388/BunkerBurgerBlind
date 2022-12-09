@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
          */
         val adminBtn = findViewById<Button>(R.id.admin_mode);
         adminBtn.setOnClickListener {
-            val intent = Intent(this, ManageMenuActivity::class.java)
+            val intent = Intent(this, ManPWActivity::class.java)
             startActivity(intent)
         }
 
