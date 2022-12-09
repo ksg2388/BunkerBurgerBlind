@@ -1,6 +1,7 @@
 package com.example.bunkerburgerblind
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.AttributeSet
@@ -43,6 +44,10 @@ class MainActivity : AppCompatActivity() {
             noButton.setOnClickListener {
                 mAlertDialog.dismiss()
             }
+        }
+
+        binding.orderSingle.setOnClickListener {
+            startActivity(Intent(this@MainActivity,SingleMenuActivity::class.java))
         }
 
         myRef.addValueEventListener(object: ValueEventListener{
