@@ -97,7 +97,7 @@
                 android:textStyle="bold" />
 
             <RadioButton
-                android:id="@+id/dailySalesShowDrink"
+                android:id="@+id/dailySalesShowbeverage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 

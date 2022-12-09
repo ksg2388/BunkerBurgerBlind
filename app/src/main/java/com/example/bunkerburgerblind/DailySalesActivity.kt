@@ -38,7 +38,7 @@ class DailySalesActivity : AppCompatActivity() {
 
         val burger = ArrayList<ItemView>()
         val side = ArrayList<ItemView>()
-        val drink = ArrayList<ItemView>()
+        val beverage = ArrayList<ItemView>()
         val all = ArrayList<ItemView>()
 
         //DB연결
@@ -53,6 +53,7 @@ class DailySalesActivity : AppCompatActivity() {
                         burger.add(ItemView(R.drawable.logo, burgers.name, burgers.usage, burgers.price * burgers.usage)) } }
                 all.addAll(burger)
 
+<<<<<<< Updated upstream
                 // side 데이터 받아오기
                 val sidedata = snapshot.child("menu").child("side")
                 for (item in sidedata.children) {
@@ -75,6 +76,14 @@ class DailySalesActivity : AppCompatActivity() {
             }
         })
 
+=======
+        beverage.add(ItemView(R.drawable.logo, "콜라", 500, 50000))
+        beverage.add(ItemView(R.drawable.logo, "청포도에이드", 600, 60000))
+
+        all.addAll(burger)
+        all.addAll(side)
+        all.addAll(beverage)
+>>>>>>> Stashed changes
 
         // ---------------
 
@@ -99,9 +108,9 @@ class DailySalesActivity : AppCompatActivity() {
                 Log.d("my", "사이드만 보기")
                 recyclerView.adapter = DailyAdapter(side)
 
-            } else if (checkedId == R.id.dailySalesShowDrink) {
+            } else if (checkedId == R.id.dailySalesShowbeverage) {
                 Log.d("my", "음료만 보기")
-                recyclerView.adapter = DailyAdapter(drink)
+                recyclerView.adapter = DailyAdapter(beverage)
             }
         }
 

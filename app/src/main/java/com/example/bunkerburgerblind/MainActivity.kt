@@ -47,9 +47,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 관리자 페이지로 이동
+        /*
         val adminBtn = findViewById<Button>(R.id.admin_mode);
         adminBtn.setOnClickListener {
             val intent = Intent(this, ManPWActivity::class.java)
+            startActivity(intent)
+        }
+         */
+        val adminBtn = findViewById<Button>(R.id.admin_mode);
+        adminBtn.setOnClickListener {
+            val intent = Intent(this, ManageMenuActivity::class.java)
             startActivity(intent)
         }
 
