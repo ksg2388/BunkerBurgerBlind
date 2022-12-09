@@ -6,7 +6,7 @@
     android:layout_margin="10dp"
     android:orientation="vertical"
     android:padding="14dp">
-
+//
     <TextView
         android:id="@+id/inventory_item_data"
         android:layout_width="500dp"
