@@ -50,12 +50,14 @@
                     android:textStyle="bold"/>
 
                 <ImageView
+                    android:id="@+id/single_1st_img"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:src="@drawable/classic_burger" />
 
                 <TextView
+                    android:id="@+id/single_1st_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="클래식 버거"
@@ -77,19 +79,20 @@
                     android:textStyle="bold"/>
 
                 <ImageView
+                    android:id="@+id/set_1st_img"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:src="@drawable/original_set" />
 
                 <TextView
+                    android:id="@+id/set_1st_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="오리지날 버거 세트"
                     android:textAlignment="center"/>
 
             </LinearLayout>
-
         </LinearLayout>
 
         <Button
@@ -100,6 +103,7 @@
             android:backgroundTint="#696969"
             android:textColor="#FFD700"
             android:textStyle="bold"
+            android:layout_marginHorizontal="10dp"
             android:textSize="20sp"/>
 
         <TextView

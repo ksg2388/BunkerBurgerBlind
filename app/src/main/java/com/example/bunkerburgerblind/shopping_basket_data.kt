@@ -4,5 +4,6 @@ data class shopping_basket_data(//장바구니 데이터 클래스(장바구니 
     var name: String,
     var price: String,
     var img: String,
-    var cnt: Int
+    var cnt: Int,
+    var stock:Int = 0
 )

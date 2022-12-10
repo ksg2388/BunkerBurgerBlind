@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.bunkerburgerblind.databinding.SingleMenuMainBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -36,13 +37,14 @@ class SingleMenuActivity : AppCompatActivity() {
             dialog.HPDig()
         }
 
+
         listAdapter.setItemClickListener(object: ListAdapter.OnItemClickListener{ //단일메뉴(리사이클러뷰) 클릭 시 다이얼로그
             var flag : Boolean = false
 
             override fun onClick(v: View, position: Int) {
                 // 메뉴 클릭
                 val dialog = SimpleMenuClickedDig(this@SingleMenuActivity)
-                dialog.SMDig(itemList[position])
+                dialog.SMDig(itemList[position], SBList)
                 dialog.setOnClickedListener(object: SimpleMenuClickedDig.ButtonClickListener{
                     override fun PutSBonClick(text: Int){ //장바구니 추가
                         for (item in SBList){
@@ -66,6 +68,7 @@ class SingleMenuActivity : AppCompatActivity() {
             dialog.setOnClickListener(object: ShoppingBasketDig.CallbackListener{
                 override fun onClicked() {
                     SetPrice()
+                    listAdapter.notifyDataSetChanged()
                 }
             })
         }
@@ -93,6 +96,11 @@ class SingleMenuActivity : AppCompatActivity() {
             }
         })
 
+        itemList.add(item_data("", 0, "품절 테스트", "재고가 품절이라면 우측에 품절이라고 뜹니다.",100,1000, 0))
+        itemList.add(item_data("", 0, "최대 주문 테스트", "주문 수량이 재고를 넘을 수 없습니다.",100,1000, 10))
+        listAdapter.notifyDataSetChanged()
+
+        Renew1stOrder()
     }
 
     fun SetPrice(){ //결제 금액 set
@@ -105,6 +113,27 @@ class SingleMenuActivity : AppCompatActivity() {
             }
             binding.price.setText(sum.toString())
         }
+    }
+
+    fun Renew1stOrder(){
+        var singlePosition = 0
+        var i = 0
+        var singleUsage = 0
+        var setPosition = 0
+
+        for (item in itemList){
+            if(item.usage > singleUsage) {
+                singlePosition = i
+                singleUsage = item.usage
+            }
+            i++
+        }
+
+        binding.single1stName.text = itemList[singlePosition].name
+        Glide.with(this)
+            .load(itemList[singlePosition].img)
+            .into(binding.single1stImg)
+        //세트 주문량 1위 추가 필요(데이터 클래스 및 DB에서 불러오기)
     }
 }
 

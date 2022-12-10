@@ -1,5 +1,6 @@
 package com.example.bunkerburgerblind
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,11 @@ class ListAdapter (val itemList: ArrayList<item_data>): RecyclerView.Adapter<Lis
         holder.name.text = itemList[position].name
         holder.price.text = itemList[position].price.toString()
         holder.info.text = itemList[position].examination
+        if(itemList[position].stock == 0){
+            holder.stock.text = "품절"
+            holder.stock.setTextColor(Color.parseColor("#DC143C"))
+        }
+        else holder.stock.text = itemList[position].stock.toString()
 
         holder.apply {
             Glide.with(holder.itemView)
@@ -44,6 +50,7 @@ class ListAdapter (val itemList: ArrayList<item_data>): RecyclerView.Adapter<Lis
         val name: TextView = itemView.findViewById(R.id.tv_rv_name)
         val price: TextView = itemView.findViewById(R.id.tv_rv_price)
         val info: TextView = itemView.findViewById(R.id.tv_rv_menu_info)
+        val stock: TextView = itemView.findViewById(R.id.tv_rv_stock)
     }
 
     // (1-2) 리스너 인터페이스
