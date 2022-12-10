@@ -88,8 +88,8 @@ class SingleMenuActivity : AppCompatActivity() {
 
                     itemList.add(item_data(imageStr, usage.toInt(), name, examination,id.toInt(),price.toInt(), stock.toInt()))
                     listAdapter.notifyDataSetChanged()
-                    Renew1stOrder()
                 }
+                Renew1stOrder()
             }
 
             override fun onCancelled(error: DatabaseError) {
