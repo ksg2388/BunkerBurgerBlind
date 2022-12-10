@@ -88,6 +88,7 @@ class SingleMenuActivity : AppCompatActivity() {
 
                     itemList.add(item_data(imageStr, usage.toInt(), name, examination,id.toInt(),price.toInt(), stock.toInt()))
                     listAdapter.notifyDataSetChanged()
+                    Renew1stOrder()
                 }
             }
 
@@ -96,11 +97,9 @@ class SingleMenuActivity : AppCompatActivity() {
             }
         })
 
-        itemList.add(item_data("", 0, "품절 테스트", "재고가 품절이라면 우측에 품절이라고 뜹니다.",100,1000, 0))
-        itemList.add(item_data("", 0, "최대 주문 테스트", "주문 수량이 재고를 넘을 수 없습니다.",100,1000, 10))
-        listAdapter.notifyDataSetChanged()
-
-        Renew1stOrder()
+        //itemList.add(item_data("", 0, "품절 테스트", "재고가 품절이라면 우측에 품절이라고 뜹니다.",100,1000, 0))
+        //itemList.add(item_data("", 0, "최대 주문 테스트", "주문 수량이 재고를 넘을 수 없습니다.",100,1000, 10))
+        //listAdapter.notifyDataSetChanged()
     }
 
     fun SetPrice(){ //결제 금액 set
