@@ -20,7 +20,7 @@ class ShoppingBasketDig(context: Context, val itemList: ArrayList<shopping_baske
         binding = ShoppingBasketDialogBinding.inflate(dialog.layoutInflater)
         adapter=SBListAdapter(itemList) //어댑터 객체 만듦
         binding.RvMenu.adapter=adapter //리사이클러뷰에 어댑터 연결
-        binding.RvMenu.layoutManager=GridLayoutManager(dialog.context,3) //레이아웃 매니저 연결
+        binding.RvMenu.layoutManager=GridLayoutManager(dialog.context,2) //레이아웃 매니저 연결
 
         dialog.setContentView(binding.root)
 

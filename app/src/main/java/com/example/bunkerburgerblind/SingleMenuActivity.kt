@@ -31,7 +31,10 @@ class SingleMenuActivity : AppCompatActivity() {
         binding.RvMenu.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.RvMenu.adapter = listAdapter
 
-        val SBbtn: Button = findViewById(R.id.SBbtn)
+        binding.help.setOnClickListener {
+            val dialog = HelpDig(this@SingleMenuActivity)
+            dialog.HPDig()
+        }
 
         listAdapter.setItemClickListener(object: ListAdapter.OnItemClickListener{ //단일메뉴(리사이클러뷰) 클릭 시 다이얼로그
             var flag : Boolean = false
@@ -57,7 +60,7 @@ class SingleMenuActivity : AppCompatActivity() {
             }
         })
 
-        SBbtn.setOnClickListener { //장바구니 다이얼로그
+        binding.SBbtn.setOnClickListener { //장바구니 다이얼로그
             val dialog = ShoppingBasketDig(this@SingleMenuActivity, SBList)
             dialog.SBDig()
             dialog.setOnClickListener(object: ShoppingBasketDig.CallbackListener{

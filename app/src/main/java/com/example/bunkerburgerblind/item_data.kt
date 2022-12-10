@@ -1,9 +1,7 @@
 package com.example.bunkerburgerblind
 
-import android.graphics.drawable.Drawable
-
 data class item_data(
-var usage:Int = 0,
+    var usage:Int = 0,
     var name:String = "",
     var examination:String = "",
     var id:Int = 0,
