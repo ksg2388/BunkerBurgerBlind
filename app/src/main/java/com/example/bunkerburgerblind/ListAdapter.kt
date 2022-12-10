@@ -3,9 +3,11 @@ package com.example.bunkerburgerblind
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.bunkerburgerblind.R
 
 class ListAdapter (val itemList: ArrayList<item_data>): RecyclerView.Adapter<ListAdapter.ViewHolder>(){
@@ -24,6 +26,12 @@ class ListAdapter (val itemList: ArrayList<item_data>): RecyclerView.Adapter<Lis
         holder.price.text = itemList[position].price.toString()
         holder.info.text = itemList[position].examination
 
+        holder.apply {
+            Glide.with(holder.itemView)
+                .load(itemList[position].img)
+                .into(img)
+        }
+
         holder.name.setSelected(true)
         // (1-1) 리스트 내 항목 클릭 시 onClick() 호출
         holder.itemView.setOnClickListener {
@@ -32,6 +40,7 @@ class ListAdapter (val itemList: ArrayList<item_data>): RecyclerView.Adapter<Lis
     }
     // (4) 레이아웃 내 View 연결
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val img: ImageView = itemView.findViewById(R.id.img_rv_photo)
         val name: TextView = itemView.findViewById(R.id.tv_rv_name)
         val price: TextView = itemView.findViewById(R.id.tv_rv_price)
         val info: TextView = itemView.findViewById(R.id.tv_rv_menu_info)

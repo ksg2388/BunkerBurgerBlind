@@ -4,7 +4,9 @@ import android.app.Dialog
 import android.content.Context
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 
 class SimpleMenuClickedDig(context: Context){
     private val dialog = Dialog(context)
@@ -29,9 +31,13 @@ class SimpleMenuClickedDig(context: Context){
         val uparrow = dialog.findViewById<Button>(R.id.uparrow)
         val downarrow = dialog.findViewById<Button>(R.id.downarrow)
         val count = dialog.findViewById<TextView>(R.id.count)
+        val img = dialog.findViewById<ImageView>(R.id.img_sm_photo)
         var text = ""
         var cnt = 0
 
+        Glide.with(dialog.context)
+            .load(itemData.img)
+            .into(img)
         name.setText(itemData.name)
         price.setText(itemData.price.toString())
         info.setText(itemData.examination)

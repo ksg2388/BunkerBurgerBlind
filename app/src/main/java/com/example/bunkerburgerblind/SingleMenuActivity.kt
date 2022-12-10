@@ -51,7 +51,7 @@ class SingleMenuActivity : AppCompatActivity() {
                                 flag = true
                             }
                         }
-                        if(flag == false) SBList.add(shopping_basket_data(itemList[position].name, itemList[position].price.toString(), text))
+                        if(flag == false) SBList.add(shopping_basket_data(itemList[position].name, itemList[position].price.toString(), itemList[position].img, text))
                         flag = false //장바구니에 아이템 추가(장바구니 데이터 구조 바꿀 필요 있을 듯 함)
 
                         SetPrice()
@@ -75,6 +75,7 @@ class SingleMenuActivity : AppCompatActivity() {
                 val test = snapshot.child("menu")
                 val burger = test.child("burger")
                 for (ds in burger.children) {
+                    val imageStr: String = ds.child("img").value as String
                     val usage: Long = ds.child("usage").value as Long
                     val name: String = ds.child("name").value as String
                     val id: Long = ds.child("id").value as Long
@@ -82,7 +83,7 @@ class SingleMenuActivity : AppCompatActivity() {
                     val price: Long = ds.child("price").value as Long
                     val examination: String = ds.child("examination").value as String
 
-                    itemList.add(item_data(usage.toInt(), name, examination,id.toInt(),price.toInt(), stock.toInt()))
+                    itemList.add(item_data(imageStr, usage.toInt(), name, examination,id.toInt(),price.toInt(), stock.toInt()))
                     listAdapter.notifyDataSetChanged()
                 }
             }

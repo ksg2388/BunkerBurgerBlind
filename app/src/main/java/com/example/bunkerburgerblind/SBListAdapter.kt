@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.bunkerburgerblind.R
 
 class SBListAdapter(val itemList: ArrayList<shopping_basket_data>): RecyclerView.Adapter<SBListAdapter.ViewHolder>() {
@@ -24,6 +26,12 @@ class SBListAdapter(val itemList: ArrayList<shopping_basket_data>): RecyclerView
         holder.price.text = itemList[position].price
         holder.cnt.text = itemList[position].cnt.toString()
 
+        holder.apply {
+            Glide.with(holder.itemView)
+                .load(itemList[position].img)
+                .into(img)
+        }
+
         holder.name.setSelected(true)
 
         // (1) 리스트 내 항목 클릭 시 onClick() 호출
@@ -33,6 +41,7 @@ class SBListAdapter(val itemList: ArrayList<shopping_basket_data>): RecyclerView
     }
     // (4) 레이아웃 내 View 연결
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val img: ImageView = itemView.findViewById(R.id.item_sv_img)
         val name: TextView = itemView.findViewById(R.id.tv_rvsb_name)
         val price: TextView = itemView.findViewById(R.id.tv_rvsb_price)
         val cnt: TextView = itemView.findViewById(R.id.tv_rvsb_cnt)
