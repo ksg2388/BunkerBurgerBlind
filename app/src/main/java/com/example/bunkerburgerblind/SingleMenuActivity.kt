@@ -26,7 +26,6 @@ class SingleMenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = SingleMenuMainBinding.inflate(layoutInflater)
         val view = binding.root
-        var sum = 0
         setContentView(view)
 
         binding.RvMenu.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -52,13 +51,7 @@ class SingleMenuActivity : AppCompatActivity() {
                         if(flag == false) SBList.add(shopping_basket_data(itemList[position].name, itemList[position].price.toString(), text))
                         flag = false //장바구니에 아이템 추가(장바구니 데이터 구조 바꿀 필요 있을 듯 함)
 
-                        if(SBList.isEmpty()==true) sum = 0
-                        else{
-                            sum = sum + itemList[position].price.toInt() * text
-                        }
-
-                        binding.price.setText(sum.toString())
-                        println(SBList)
+                        SetPrice()
                     }
                 })
             }
@@ -67,6 +60,11 @@ class SingleMenuActivity : AppCompatActivity() {
         SBbtn.setOnClickListener { //장바구니 다이얼로그
             val dialog = ShoppingBasketDig(this@SingleMenuActivity, SBList)
             dialog.SBDig()
+            dialog.setOnClickListener(object: ShoppingBasketDig.CallbackListener{
+                override fun onClicked() {
+                    SetPrice()
+                }
+            })
         }
 
         myRef.addValueEventListener(object: ValueEventListener {
@@ -91,6 +89,18 @@ class SingleMenuActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    fun SetPrice(){ //결제 금액 set
+        var sum = 0
+        if(SBList.isEmpty()==true)
+            binding.price.setText("0")
+        else{
+            for (item in SBList){
+                sum = sum + item.price.toInt() * item.cnt
+            }
+            binding.price.setText(sum.toString())
+        }
     }
 }
 

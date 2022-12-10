@@ -25,12 +25,18 @@ class SBListAdapter(val itemList: ArrayList<shopping_basket_data>): RecyclerView
         holder.cnt.text = itemList[position].cnt.toString()
 
         holder.name.setSelected(true)
+
+        // (1) 리스트 내 항목 클릭 시 onClick() 호출
+        holder.cancel.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
     }
     // (4) 레이아웃 내 View 연결
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.tv_rvsb_name)
         val price: TextView = itemView.findViewById(R.id.tv_rvsb_price)
         val cnt: TextView = itemView.findViewById(R.id.tv_rvsb_cnt)
+        val cancel: Button = itemView.findViewById(R.id.bt_remove)
     }
 
     interface OnItemClickListener {
@@ -42,4 +48,6 @@ class SBListAdapter(val itemList: ArrayList<shopping_basket_data>): RecyclerView
     }
     // (1-4) setItemClickListener로 설정한 함수 실행
     private lateinit var itemClickListener : OnItemClickListener
+
+
 }

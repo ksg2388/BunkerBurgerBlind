@@ -35,7 +35,18 @@ class ShoppingBasketDig(context: Context, val itemList: ArrayList<shopping_baske
         ClickEvent()
 
         adapter.notifyDataSetChanged()
+
         SetPrice()
+    }
+
+    interface CallbackListener{
+        fun onClicked()
+    }
+
+    private lateinit var onClickListener: CallbackListener
+
+    fun setOnClickListener(listener: CallbackListener){
+        onClickListener = listener
     }
 
     fun SetPrice(){
@@ -52,11 +63,22 @@ class ShoppingBasketDig(context: Context, val itemList: ArrayList<shopping_baske
 
     fun ClickEvent(){
         binding.btnSbBuy.setOnClickListener{
+            onClickListener.onClicked()
             dialog.dismiss()
         }
 
         binding.btnSbCancel.setOnClickListener{
+            onClickListener.onClicked()
             dialog.dismiss()
         }
+
+        adapter.setItemClickListener(object: SBListAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                // 클릭 시 이벤트 작성
+                itemList.removeAt(position)
+                adapter.notifyDataSetChanged()
+                SetPrice()
+            }
+        })
     }
 }
