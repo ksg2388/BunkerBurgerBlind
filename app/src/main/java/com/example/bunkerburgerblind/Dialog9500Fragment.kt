@@ -19,7 +19,8 @@ class Dialog9500Fragment : DialogFragment() {
     private lateinit var side: ArrayList<MenuType>
     private lateinit var beverage: ArrayList<MenuType>
 
-    var shoppingBag = ArrayList<String>()
+    var setList = ArrayList<String>()
+    var totalCost = 9500
     var selectedMenu = 0
 
     inner class TestShoppingBag {
@@ -40,16 +41,15 @@ class Dialog9500Fragment : DialogFragment() {
         side = arguments?.getSerializable("side") as ArrayList<MenuType>
         beverage = arguments?.getSerializable("beverage") as ArrayList<MenuType>
 
-        burger = burger.filter { it.price == 6500 } as ArrayList<MenuType>
-
         binding.prevBtn.setOnClickListener{
             dismiss()
         }
 
         binding.nextBtn.setOnClickListener{
-            shoppingBag.add(burger[selectedMenu].name)
+            setList.add(burger[selectedMenu].name)
+            totalCost += burger[selectedMenu].price - 6500
             val dialog = Dialog9500SideFragment()
-            setDataAtFragment(dialog, burger, side, beverage, shoppingBag)
+            setDataAtFragment(dialog, burger, side, beverage, setList, totalCost)
             dismiss()
         }
 
@@ -58,12 +58,13 @@ class Dialog9500Fragment : DialogFragment() {
         return view
     }
 
-    private fun setDataAtFragment(fragment:DialogFragment, burger:ArrayList<MenuType>, side:ArrayList<MenuType>, beverage:ArrayList<MenuType>, shoppingBag: ArrayList<String>) {
+    private fun setDataAtFragment(fragment:DialogFragment, burger:ArrayList<MenuType>, side:ArrayList<MenuType>, beverage:ArrayList<MenuType>, setList: ArrayList<String>, totalCost: Int) {
         val bundle = Bundle()
         bundle.putSerializable("burger", burger)
         bundle.putSerializable("side", side)
         bundle.putSerializable("beverage", beverage)
-        bundle.putSerializable("shoppingBag", shoppingBag)
+        bundle.putSerializable("setList", setList)
+        bundle.putInt("totalCost", totalCost)
 
         fragment.arguments = bundle
         activity?.let { fragment.show(it.supportFragmentManager, "Custom") }

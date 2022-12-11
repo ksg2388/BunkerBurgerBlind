@@ -82,26 +82,28 @@ class MainActivity : AppCompatActivity(), SendEventListener {
 
 
         binding.orderSet.setOnClickListener {
-            //Dialog 만들기
-            val mDialogView = LayoutInflater.from(this).inflate(R.layout.set_choice, null)
-            val mBuilder = AlertDialog.Builder(this)
-                .setView(mDialogView)
-//                .setTitle("세트 주문하기")
-
-            val mAlertDialog = mBuilder.show()
-            mAlertDialog.window?.setLayout(1200,WindowManager.LayoutParams.WRAP_CONTENT)
-
-            val btnSet1 = mDialogView.findViewById<LinearLayout>(R.id.set1)
-            btnSet1.setOnClickListener {
-               //버튼 클릭시 커스텀프래그먼트 다이얼로그 실행
-               val dialog = Dialog9500Fragment()
-                setDataAtFragment(dialog, burger, side, beverage)
-            }
-
-            val noButton = mDialogView.findViewById<Button>(R.id.cancel_button)
-            noButton.setOnClickListener {
-                mAlertDialog.dismiss()
-            }
+//            //Dialog 만들기
+//            val mDialogView = LayoutInflater.from(this).inflate(R.layout.set_choice, null)
+//            val mBuilder = AlertDialog.Builder(this)
+//                .setView(mDialogView)
+////                .setTitle("세트 주문하기")
+//
+//            val mAlertDialog = mBuilder.show()
+//            mAlertDialog.window?.setLayout(1200,WindowManager.LayoutParams.WRAP_CONTENT)
+//
+//            val btnSet1 = mDialogView.findViewById<LinearLayout>(R.id.set1)
+//            btnSet1.setOnClickListener {
+//               //버튼 클릭시 커스텀프래그먼트 다이얼로그 실행
+//               val dialog = Dialog9500Fragment()
+//                setDataAtFragment(dialog, burger, side, beverage)
+//            }
+//
+//            val noButton = mDialogView.findViewById<Button>(R.id.cancel_button)
+//            noButton.setOnClickListener {
+//                mAlertDialog.dismiss()
+//            }
+            val dialog = Dialog9500Fragment()
+            setDataAtFragment(dialog, burger, side, beverage)
         }
     }
 

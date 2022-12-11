@@ -8,9 +8,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.bunkerburgerblind.databinding.ItemMenuListRecyclerviewBinding
-
-
-
 class RecyclerUserAdapter(
     private val items: ArrayList<MenuType>,
     var link: Dialog9500Fragment.TestShoppingBag
@@ -42,7 +39,7 @@ class RecyclerUserAdapter(
 
         fun bind(item: MenuType, listener: View.OnClickListener) {
             binding.menuName.text = item.name
-            binding.menuPrice.text = item.price.toString()
+            binding.menuPrice.text = "+${item.price - 6500}"
             binding.menuExamination.text = item.examination
             Glide.with(itemView).load(item.img).into(binding.menuImg)
             binding.root.setOnClickListener(listener)
