@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "627736488052",
+    "firebase_url": "https://bunkerburgerblind-default-rtdb.firebaseio.com",
     "project_id": "bunkerburgerblind",
     "storage_bucket": "bunkerburgerblind.appspot.com"
   },
