@@ -1,6 +1,6 @@
 package com.example.bunkerburgerblind
 
-class MenuType {
+class MenuStockType {
     var usage:Int = 0
     var name:String = ""
     var examination:String = ""
@@ -8,9 +8,10 @@ class MenuType {
     var price:Int = 0
     var stock:Int = 0
     var img:String = ""
+    var type:String = ""
 
     constructor() // 파이어베이스에서 데이터 변환을 위해서 필요
-    constructor(usage:Int, name:String, examination:String, id:Int, price: Int, stock:Int, img:String) {
+    constructor(usage:Int, name:String, examination:String, id:Int, price: Int, stock:Int, img:String, type: String) {
         this.name = name
         this.examination = examination
         this.price = price
@@ -18,5 +19,6 @@ class MenuType {
         this.id = id
         this.stock = stock
         this.img = img
+        this.type = type
     }
 }

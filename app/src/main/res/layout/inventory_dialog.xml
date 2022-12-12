@@ -14,7 +14,7 @@
         android:textSize="30dp"
         android:textStyle="bold" />
 
-    <!-- 구분선 -->
+    <!-- 구분선d -->
     <View
         android:layout_width="match_parent"
         android:layout_height="6px"

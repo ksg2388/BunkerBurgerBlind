@@ -13,10 +13,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 data class ItemView(val image: String, val name: String, val quantity: Int, val price: Int)
 
 class DailySalesActivity : AppCompatActivity() {
+    val database = Firebase.database
+    val myRef = database.getReference("bunkerburger")
+
     lateinit var goBack: Button
     lateinit var radioGroup: RadioGroup
     lateinit var salesPrice: TextView
@@ -24,6 +32,10 @@ class DailySalesActivity : AppCompatActivity() {
 
     var total_count: Int = 0
     var total_sales: Int = 0
+
+    var burgerList = ArrayList<MenuType>()
+    var sideList = ArrayList<MenuType>()
+    var beverageList = ArrayList<MenuType>()
 
     var burgers = ArrayList<ItemView>()
     var sides = ArrayList<ItemView>()
@@ -34,38 +46,81 @@ class DailySalesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.daily_sales_main)
 
-        val recyclerView: RecyclerView = findViewById(R.id.daily_recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-        // 데이터 담기
-        for (item in burgerList) {
-            burgers.add(ItemView(item.img, item.name, item.usage, item.price * item.usage))
-            total_count += item.usage
-            total_sales += item.price * item.usage
-        }
-        for (item in sideList) {
-            sides.add(ItemView(item.img, item.name, item.usage, item.price * item.usage))
-            total_count += item.usage
-            total_sales += item.price * item.usage
-        }
-        for (item in beverageList) {
-            beverages.add(ItemView(item.img, item.name, item.usage, item.price * item.usage))
-            total_count += item.usage
-            total_sales += item.price * item.usage
-        }
-        all.addAll(burgers)
-        all.addAll(sides)
-        all.addAll(beverages)
-
-        recyclerView.adapter = DailyAdapter(all)
-        (recyclerView.adapter as DailyAdapter).notifyDataSetChanged()
-
-        // --------------- 화면 하단 총 판매 수량, 총 판매 금액
         salesPrice = findViewById(R.id.salesPrice)
         salesQuantity = findViewById(R.id.salesQuantity)
 
-        salesQuantity.setText("총 판매 수량 ( ${total_count} )")
-        salesPrice.setText("총 판매 금액 ( ${total_sales} )")
+        val recyclerView: RecyclerView = findViewById(R.id.daily_recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+
+
+        //db connection
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //burger data
+                val burgerdata = snapshot.child("menu").child("burger")
+                for (item in burgerdata.children) {
+                    val burgers = item.getValue(MenuType::class.java)
+                    if (burgers != null) {
+                        burgerList.add(burgers)
+                    }
+                }
+                //side data
+                val sidedata = snapshot.child("menu").child("side")
+                for (item in sidedata.children) {
+                    val sides = item.getValue(MenuType::class.java)
+                    if (sides != null) {
+                        sideList.add(sides)
+                    }
+                }
+                //beverage data
+                val beveragedata = snapshot.child("menu").child("beverage")
+                for (item in beveragedata.children) {
+                    val beverages = item.getValue(MenuType::class.java)
+                    if (beverages != null) {
+                        beverageList.add(beverages)
+                    }
+                }
+
+                for (item in burgerList) {
+                    burgers.add(ItemView(item.img, item.name, item.usage, item.price * item.usage))
+                    total_count += item.usage
+                    total_sales += item.price * item.usage
+                }
+
+                for (item in sideList) {
+                    sides.add(ItemView(item.img, item.name, item.usage, item.price * item.usage))
+                    total_count += item.usage
+                    total_sales += item.price * item.usage
+                }
+
+                for (item in beverageList) {
+                    beverages.add(ItemView(item.img, item.name, item.usage, item.price * item.usage))
+                    total_count += item.usage
+                    total_sales += item.price * item.usage
+                }
+
+                all.addAll(burgers)
+                all.addAll(sides)
+                all.addAll(beverages)
+
+                salesQuantity.setText("총 판매 수량 ( ${total_count} )")
+                salesPrice.setText("총 판매 금액 ( ${total_sales} )")
+
+                recyclerView.adapter = DailyAdapter(all)
+            }
+
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("실패", "실패")
+            }
+        })
+
+
+
+//        recyclerView.adapter = DailyAdapter(all)
+//        (recyclerView.adapter as DailyAdapter).notifyDataSetChanged()
+
 
         // ---------------
 

@@ -1,5 +1,7 @@
 package com.example.bunkerburgerblind
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
@@ -37,10 +39,10 @@ class InventoryClicked : AppCompatActivity() {
         val intentName = intent.getStringExtra("inventory_name")
         val intentExamination = intent.getStringExtra("inventory_examination")
         val intentStock = intent.getStringExtra("inventory_stock")
-        val type = intent.getStringExtra("inventory_type")
-        var ordercount:String
+        val intentType = intent.getStringExtra("inventory_type")!!
+        var ordercount: String
         val datapath =
-            Firebase.database.reference.child("bunkerburger").child("menu").child(type.toString())
+            Firebase.database.reference.child("bunkerburger").child("menu").child(intentType)
                 .child(intentName.toString())
 
 
@@ -52,16 +54,31 @@ class InventoryClicked : AppCompatActivity() {
 
 
         makeorder.setOnClickListener {
-            ordercount= orderquantity.text.toString()
-            if(orderquantity.text.toString().equals("")||orderquantity.text.toString()==null||orderquantity.text.toString().equals("0")){
-                Log.e("edittext","null")
+            ordercount = orderquantity.text.toString()
+            if (orderquantity.text.toString().equals("") || orderquantity.text.toString() == null || orderquantity.text.toString().equals("0")) {
+                Log.e("edittext", "null")
+               //종료
                 Toast.makeText(this@InventoryClicked, "주문이 취소되었습니다.", Toast.LENGTH_LONG).show()
                 finish()
             }
-            else{
-                datapath.child("stock").setValue(intentStock.toString().toInt() + ordercount.toInt())
-                orderquantity.setText(null)
+            else {
+                Log.d("재고이름", intentType)
+                Log.d("기존재고", intentStock.toString().toInt().toString())
+                Log.d("추가재고", ordercount.toInt().toString())
+
+                datapath.child("stock")
+                    .setValue(intentStock.toString().toInt() + ordercount.toInt())
+
+                intent.putExtra("ordered_name", intentName)
+                intent.putExtra("ordered_stock", intentStock.toString().toInt() + ordercount.toInt())
+                intent.putExtra("ordered_type", intentType)
+
+                setResult(RESULT_OK,intent)
+                Log.e("변경완료","보내기")
+                //orderquantity.setText(null)
+                //종료메세지
                 Toast.makeText(this@InventoryClicked, "주문이 완료되었습니다.", Toast.LENGTH_LONG).show()
+                //종료
                 finish()
             }
         }
