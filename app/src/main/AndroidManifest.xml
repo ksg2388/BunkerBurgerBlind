@@ -2,13 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <!--갤러리 권한-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
-    <!--카메라 권한-->
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 갤러리 권한 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 카메라 권한 -->
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -33,14 +30,28 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".ManPWActivity" android:label="ManageMenuActivity" />
-        <activity android:name=".ManMainActivity" android:label="ManMainActivity" />
-        <activity android:name=".DailySalesActivity" android:label="DailySalesActivity" />
-        <activity android:name=".InventoryStatusActivity" android:label="InventoryStatusActivity" />
-        <activity android:name=".ManageMenuActivity" android:label="ManageMenuActivity" />
-        <activity android:name=".EditMenuActivity" android:label="EditMenuActivity" />
-
-
+        <activity
+            android:name=".ManPWActivity"
+            android:label="ManageMenuActivity" />
+        <activity
+            android:name=".ManMainActivity"
+            android:label="ManMainActivity" />
+        <activity
+            android:name=".DailySalesActivity"
+            android:label="DailySalesActivity" />
+        <activity
+            android:name=".InventoryStatusActivity"
+            android:label="InventoryStatusActivity" />
+        <activity
+            android:name=".ManageMenuActivity"
+            android:label="ManageMenuActivity" />
+        <activity
+            android:name=".EditMenuActivity"
+            android:label="EditMenuActivity" />
+        <activity
+            android:name=".InventoryClicked"
+            android:label="InventoryClicked"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog"/>
     </application>
 
 </manifest>
