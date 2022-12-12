@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.bunkerburgerblind.R
 
 class SBListAdapter(val itemList: ArrayList<shopping_basket_data>): RecyclerView.Adapter<SBListAdapter.ViewHolder>() {
     // (1) 아이템 레이아웃과 결합

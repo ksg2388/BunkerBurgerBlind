@@ -11,7 +11,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 
 
-class SimpleMenuClickedDig(context: Context){
+class SingleMenuClickedDig(context: Context){
     private val dialog = Dialog(context)
 
     private lateinit var onClickListener: ButtonClickListener

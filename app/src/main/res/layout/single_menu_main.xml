@@ -221,11 +221,12 @@
             android:layout_marginLeft="3dp"/>
 
         <Button
+            android:id="@+id/BackBtn"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="bottom"
-            android:text="현금 결제"
+            android:text="처음으로"
             android:textSize="25sp"
             android:textStyle="bold"
             android:backgroundTint="#DC143C"
@@ -236,7 +237,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="bottom"
-            android:text="카드 결제"
+            android:text="결제 하기"
             android:textSize="25sp"
             android:textStyle="bold"
             android:backgroundTint="#4682B4"

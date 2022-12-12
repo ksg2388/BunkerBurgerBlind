@@ -1,14 +1,10 @@
 package com.example.bunkerburgerblind
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import com.example.bunkerburgerblind.databinding.ActivityMainBinding
@@ -47,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.orderSingle.setOnClickListener {
-            startActivity(Intent(this@MainActivity,SingleMenuActivity::class.java))
+            startActivity(Intent(this@MainActivity,SimpleMenuActivity::class.java))
         }
 
         myRef.addValueEventListener(object: ValueEventListener{

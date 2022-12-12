@@ -1,10 +1,11 @@
 package com.example.bunkerburgerblind
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.bunkerburgerblind.databinding.SingleMenuMainBinding
@@ -14,7 +15,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class SingleMenuActivity : AppCompatActivity() {
+class SimpleMenuActivity : AppCompatActivity() {
     private val database = Firebase.database
     private val myRef = database.getReference("bunkerburger")
 
@@ -33,19 +34,22 @@ class SingleMenuActivity : AppCompatActivity() {
         binding.RvMenu.adapter = listAdapter
 
         binding.help.setOnClickListener {
-            val dialog = HelpDig(this@SingleMenuActivity)
+            val dialog = HelpDig(this@SimpleMenuActivity)
             dialog.HPDig()
         }
 
+        binding.BackBtn.setOnClickListener {
+            startActivity(Intent(this@SimpleMenuActivity,MainActivity::class.java))
+        }
 
         listAdapter.setItemClickListener(object: ListAdapter.OnItemClickListener{ //단일메뉴(리사이클러뷰) 클릭 시 다이얼로그
             var flag : Boolean = false
 
             override fun onClick(v: View, position: Int) {
                 // 메뉴 클릭
-                val dialog = SimpleMenuClickedDig(this@SingleMenuActivity)
+                val dialog = SingleMenuClickedDig(this@SimpleMenuActivity)
                 dialog.SMDig(itemList[position], SBList)
-                dialog.setOnClickedListener(object: SimpleMenuClickedDig.ButtonClickListener{
+                dialog.setOnClickedListener(object: SingleMenuClickedDig.ButtonClickListener{
                     override fun PutSBonClick(text: Int){ //장바구니 추가
                         for (item in SBList){
                             if(item.name == itemList[position].name){
@@ -63,7 +67,7 @@ class SingleMenuActivity : AppCompatActivity() {
         })
 
         binding.SBbtn.setOnClickListener { //장바구니 다이얼로그
-            val dialog = ShoppingBasketDig(this@SingleMenuActivity, SBList)
+            val dialog = ShoppingBasketDig(this@SimpleMenuActivity, SBList)
             dialog.SBDig()
             dialog.setOnClickListener(object: ShoppingBasketDig.CallbackListener{
                 override fun onClicked() {
@@ -85,7 +89,7 @@ class SingleMenuActivity : AppCompatActivity() {
                     val stock: Long = ds.child("stock").value as Long
                     val price: Long = ds.child("price").value as Long
                     val examination: String = ds.child("examination").value as String
-
+                    Log.e("스냅", ds.toString())
                     itemList.add(item_data(imageStr, usage.toInt(), name, examination,id.toInt(),price.toInt(), stock.toInt()))
                     listAdapter.notifyDataSetChanged()
                 }
@@ -97,9 +101,9 @@ class SingleMenuActivity : AppCompatActivity() {
             }
         })
 
-        //itemList.add(item_data("", 0, "품절 테스트", "재고가 품절이라면 우측에 품절이라고 뜹니다.",100,1000, 0))
-        //itemList.add(item_data("", 0, "최대 주문 테스트", "주문 수량이 재고를 넘을 수 없습니다.",100,1000, 10))
-        //listAdapter.notifyDataSetChanged()
+        itemList.add(item_data("", 0, "품절 테스트", "재고가 품절이라면 우측에 품절이라고 뜹니다.",100,1000, 0))
+        itemList.add(item_data("", 0, "최대 주문 테스트", "주문 수량이 재고를 넘을 수 없습니다.",100,1000, 10))
+        listAdapter.notifyDataSetChanged()
     }
 
     fun SetPrice(){ //결제 금액 set
@@ -136,3 +140,6 @@ class SingleMenuActivity : AppCompatActivity() {
     }
 }
 
+class paymentDig(context: Context){
+
+}
