@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/layoutListItem"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="20dp"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:id="@+id/item_sv_img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_rvsb_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="이름"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"/>
+
+    <TextView
+        android:id="@+id/tv_rvsb_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="가격"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tv_rvsb_cnt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0 개"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/bt_remove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="삭제하기"
+        android:textStyle="bold"
+        android:backgroundTint="#FFD400"/>
+
+</LinearLayout>
