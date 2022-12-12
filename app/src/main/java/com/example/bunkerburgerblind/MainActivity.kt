@@ -41,23 +41,14 @@ class MainActivity : AppCompatActivity(), SendEventListener {
         // 세트메뉴 받아오기
         if (intent.hasExtra("setList")) {
             val shoppingBag = intent.getSerializableExtra("setList") as ArrayList<String>
-            Log.d("데이터 확인", shoppingBag[0])
-            Log.d("데이터 확인", shoppingBag[1])
-            Log.d("데이터 확인", shoppingBag[2])
         }
         if (intent.hasExtra("totalCost")) {
             val totalCost = intent.getIntExtra("totalCost", 0)
-            Log.d("데이터 확인", totalCost.toString())
         }
 
         myRef.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val menu = snapshot.child("menu")
-                val test = snapshot.child("menu").child("burger")
-//                val testList = menu.getValue(MenuListType::class.java)
-
-                Log.d("확인용", menu.value.toString())
-//                Log.d("확인용", testList.toString())
 
                 for (item in menu.child("burger").children) {
                     val temp = item.getValue(MenuType::class.java)
@@ -82,26 +73,6 @@ class MainActivity : AppCompatActivity(), SendEventListener {
 
 
         binding.orderSet.setOnClickListener {
-//            //Dialog 만들기
-//            val mDialogView = LayoutInflater.from(this).inflate(R.layout.set_choice, null)
-//            val mBuilder = AlertDialog.Builder(this)
-//                .setView(mDialogView)
-////                .setTitle("세트 주문하기")
-//
-//            val mAlertDialog = mBuilder.show()
-//            mAlertDialog.window?.setLayout(1200,WindowManager.LayoutParams.WRAP_CONTENT)
-//
-//            val btnSet1 = mDialogView.findViewById<LinearLayout>(R.id.set1)
-//            btnSet1.setOnClickListener {
-//               //버튼 클릭시 커스텀프래그먼트 다이얼로그 실행
-//               val dialog = Dialog9500Fragment()
-//                setDataAtFragment(dialog, burger, side, beverage)
-//            }
-//
-//            val noButton = mDialogView.findViewById<Button>(R.id.cancel_button)
-//            noButton.setOnClickListener {
-//                mAlertDialog.dismiss()
-//            }
             val dialog = Dialog9500Fragment()
             setDataAtFragment(dialog, burger, side, beverage)
         }
