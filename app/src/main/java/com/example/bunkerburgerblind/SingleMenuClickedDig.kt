@@ -17,6 +17,7 @@ class SingleMenuClickedDig(context: Context){
     private lateinit var onClickListener: ButtonClickListener
 
     fun SMDig(itemData: item_data, SBList: ArrayList<shopping_basket_data>){
+
         dialog.setContentView(R.layout.simple_menu_clicked_dialog)
 
         dialog.window!!.setLayout(WindowManager.LayoutParams.MATCH_PARENT,

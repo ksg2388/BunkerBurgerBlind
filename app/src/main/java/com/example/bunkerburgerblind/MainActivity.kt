@@ -17,17 +17,26 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity(), SendEventListener {
+
+    val itemList = arrayListOf<item_data>()      // 단품 메뉴 아이템 배열
+    val listAdapter = ListAdapter(itemList)     // 단품 메뉴 rv 어댑터
+    var SBList = arrayListOf<shopping_basket_data>() //장바구니 아이템 배열
+
     private val database = Firebase.database
     private val myRef = database.getReference("bunkerburger")
 
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if(intent.hasExtra("SBListFromSingle")) {
+            SBList = intent.getSerializableExtra("SBListFromSingle") as ArrayList<shopping_basket_data>
+            SetPrice()
+        }
 
         val burger = ArrayList<MenuType>()
         val side = ArrayList<MenuType>()
@@ -66,6 +75,21 @@ class MainActivity : AppCompatActivity(), SendEventListener {
             }
         })
 
+        binding.help.setOnClickListener {
+            val dialog = HelpDig(this@MainActivity)
+            dialog.HPDig()
+        }
+
+        binding.SBbtn.setOnClickListener { //장바구니 다이얼로그
+            val dialog = ShoppingBasketDig(this@MainActivity, SBList)
+            dialog.SBDig()
+            dialog.setOnClickListener(object: ShoppingBasketDig.CallbackListener{
+                override fun onClicked() {
+                    SetPrice()
+                    listAdapter.notifyDataSetChanged()
+                }
+            })
+        }
 
         binding.orderSet.setOnClickListener {
             val dialog = Dialog9500Fragment()
@@ -73,7 +97,9 @@ class MainActivity : AppCompatActivity(), SendEventListener {
         }
 
         binding.orderSingle.setOnClickListener {
-            startActivity(Intent(this@MainActivity,SimpleMenuActivity::class.java))
+            val intent = Intent(this@MainActivity,SimpleMenuActivity::class.java)
+            intent.putExtra("SBListFromMain", SBList)
+            startActivity(intent)
         }
 
         myRef.addValueEventListener(object: ValueEventListener {
@@ -102,6 +128,18 @@ class MainActivity : AppCompatActivity(), SendEventListener {
 
     override fun sendMessage (message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    fun SetPrice(){ //결제 금액 set
+        var sum = 0
+        if(SBList.isEmpty()==true)
+            binding.price.setText("0")
+        else{
+            for (item in SBList){
+                sum = sum + item.price.toInt() * item.cnt
+            }
+            binding.price.setText(sum.toString())
+        }
     }
 
 }
