@@ -56,10 +56,16 @@ class InventoryStatusActivity : AppCompatActivity() {
         // DB connection
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                burgerList.clear()
+                sideList.clear()
+                beverageList.clear()
+                burger.clear()
+                side.clear()
+                beverage.clear()
+                all.clear()
                 //burger data
                 val burgerdata = snapshot.child("menu").child("burger")
                 Log.e("burger", burgerdata.toString())
-
                 for(item in burgerdata.children){
                     val burgers = item.getValue(MenuType::class.java)
                     if (burgers != null) {
@@ -85,10 +91,10 @@ class InventoryStatusActivity : AppCompatActivity() {
                 for (item in burgerList) {
                     burger.add(InventroyItemView(item.img, item.name, item.stock, item.usage,item.examination,"burger"))
                 }
-                for (item in burgerList) {
+                for (item in sideList) {
                     side.add(InventroyItemView(item.img, item.name, item.stock, item.usage,item.examination,"side"))
                 }
-                for (item in burgerList) {
+                for (item in beverageList) {
                     beverage.add(InventroyItemView(item.img, item.name, item.stock, item.usage,item.examination,"beverage"))
                 }
 
@@ -105,38 +111,6 @@ class InventoryStatusActivity : AppCompatActivity() {
                 Log.e("DailySales_burger", "실패")
             }
         })
-
-        requestLaunch=registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()){
-            if(it.resultCode== RESULT_OK){
-//                burgerList.clear()
-//                sideList.clear()
-//                beverageList.clear()
-//                burger.clear()
-//                side.clear()
-//                beverage.clear()
-//                all.clear()
-//                binding.inventoryRecyclerView.adapter = InventoryAdapter(all)
-                val resultName= it.data?.getStringExtra("ordered_name").toString()
-                val resultStock=it.data?.getStringExtra("ordered_stock").toString()
-                val resultType=it.data?.getStringExtra("ordered_type").toString()
-                Log.e("값 변경됨",resultName)
-                Log.e("값 변경됨",resultType)
-                Log.e("값 변경됨",resultStock)
-
-                if(resultType.equals("burger")){
-
-                }
-                else if (resultType.equals("side")){
-
-                }
-                else{
-
-                }
-            }
-        }
-
-
 
         goBack = findViewById(R.id.goback)
         goBack.setOnClickListener {

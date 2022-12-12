@@ -75,8 +75,7 @@ class InventoryClicked : AppCompatActivity() {
 
                 setResult(RESULT_OK,intent)
                 Log.e("변경완료","보내기")
-                //orderquantity.setText(null)
-                //종료메세지
+
                 Toast.makeText(this@InventoryClicked, "주문이 완료되었습니다.", Toast.LENGTH_LONG).show()
                 //종료
                 finish()
