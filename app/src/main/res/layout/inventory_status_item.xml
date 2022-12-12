@@ -6,20 +6,65 @@
     android:layout_margin="10dp"
     android:orientation="vertical"
     android:padding="14dp">
-//
-    <TextView
-        android:id="@+id/inventory_item_data"
-        android:layout_width="500dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        android:gravity="center"
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:background="@drawable/man_main_btn_background"
-        android:elevation="10dp"
-        android:paddingVertical="15dp"
+        android:orientation="horizontal">
 
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textColor="@color/white" />
+        <ImageView
+            android:id="@+id/inventory_item_image"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/inventory_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/inventory_item_stock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="보유량()"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="23dp" />
+
+                <TextView
+                    android:id="@+id/inventory_item_usage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="사용량()"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="23dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
