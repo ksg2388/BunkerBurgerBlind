@@ -52,8 +52,7 @@ class InventoryStatusActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.inventoryRecyclerView.layoutManager = LinearLayoutManager(this)
 
-
-        // DB connection
+        // DB connect
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 burgerList.clear()

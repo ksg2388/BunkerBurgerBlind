@@ -45,7 +45,6 @@ class InventoryClicked : AppCompatActivity() {
             Firebase.database.reference.child("bunkerburger").child("menu").child(intentType)
                 .child(intentName.toString())
 
-
         menu_name.setText("${intentName} 사용 현황")
         using.setText(intentExamination)
 
