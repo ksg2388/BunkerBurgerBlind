@@ -16,14 +16,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="햄버거를 선택해 주세요!"
-            android:textSize="20sp"
+            android:textSize="24dp"
+            android:textStyle="bold"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/border_radius"
+            android:background="@drawable/layout_background"
             android:layout_marginBottom="20dp">
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/scrap_recycler_view"

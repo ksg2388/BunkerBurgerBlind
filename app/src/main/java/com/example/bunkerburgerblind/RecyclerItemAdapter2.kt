@@ -44,6 +44,7 @@ class RecyclerUserAdapter2(
             binding.menuName.text = item.name
             binding.menuPrice.text = "+${item.price - 2500}"
             binding.menuExamination.text = item.examination
+            binding.menuExamination.isSelected = true
             Glide.with(itemView).load(item.img).into(binding.menuImg)
             binding.root.setOnClickListener(listener)
 
