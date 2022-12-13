@@ -44,6 +44,8 @@ class Dialog9500Fragment : DialogFragment() {
         beverage = arguments?.getSerializable("beverage") as ArrayList<MenuType>
         SBList = arguments?.getSerializable("SBList") as ArrayList<shopping_basket_data>
 
+        burger = ArrayList(burger.sortedBy { it.price })
+
         binding.prevBtn.setOnClickListener{
             dismiss()
         }
