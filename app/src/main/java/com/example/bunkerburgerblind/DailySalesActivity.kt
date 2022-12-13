@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 data class ItemView(val image: String, val name: String, val quantity: Int, val price: Int)
@@ -32,6 +33,8 @@ class DailySalesActivity : AppCompatActivity() {
 
     var total_count: Int = 0
     var total_sales: Int = 0
+    var set95_count: Int = 0
+    var set105_count: Int = 0
 
     var burgerList = ArrayList<MenuType>()
     var sideList = ArrayList<MenuType>()
@@ -41,6 +44,7 @@ class DailySalesActivity : AppCompatActivity() {
     var sides = ArrayList<ItemView>()
     var beverages = ArrayList<ItemView>()
     var all = ArrayList<ItemView>()
+    var setmenu = ArrayList<ItemView>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +55,6 @@ class DailySalesActivity : AppCompatActivity() {
 
         val recyclerView: RecyclerView = findViewById(R.id.daily_recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-
 
         //db connection
         myRef.addValueEventListener(object : ValueEventListener {
@@ -81,6 +83,21 @@ class DailySalesActivity : AppCompatActivity() {
                         beverageList.add(beverages)
                     }
                 }
+                //set data
+                val test1=snapshot.child("order").children
+                var count=0
+                for (i in test1+1) {
+                    val test = snapshot.child("order").child(count.toString()).child("name").getValue()
+                    if(test=="10,500 세트"){
+                        Log.e("order name",test.toString() )
+                        set105_count+=1
+                    }
+                    else if(test=="9,500 세트"){
+                        Log.e("order name",test.toString() )
+                        set95_count+=1
+                    }
+                    count+=1
+                }
 
                 for (item in burgerList) {
                     burgers.add(ItemView(item.img, item.name, item.usage, item.price * item.usage))
@@ -99,6 +116,12 @@ class DailySalesActivity : AppCompatActivity() {
                     total_count += item.usage
                     total_sales += item.price * item.usage
                 }
+                setmenu.add(ItemView("https://search.pstatic.net/common/?autoRotate=true&quality=95&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20211231_5%2F1640910271545DWPcR_JPEG%2FiyDzBVLyX_amrf1hxw4QExVlh74nY7yRaXYV0NT6CKM%253D.jpg&type=h166", "9,500 세트", set95_count, set95_count * 9500))
+                setmenu.add(ItemView("https://ldb-phinf.pstatic.net/20220107_13/1641535879315peyUt_JPEG/MhijmaKlTEF2g5QOvUvnUBGl7ZKqizQNECULrnggtMA%3D.jpg", "10,500 세트", set105_count, set105_count * 10500))
+                total_count += set95_count
+                total_count += set105_count
+                total_sales += set95_count * 9500
+                total_sales += set105_count * 10500
 
                 all.addAll(burgers)
                 all.addAll(sides)
@@ -115,13 +138,7 @@ class DailySalesActivity : AppCompatActivity() {
                 Log.e("실패", "실패")
             }
         })
-
-
-
-//        recyclerView.adapter = DailyAdapter(all)
-//        (recyclerView.adapter as DailyAdapter).notifyDataSetChanged()
-
-
+        
         // ---------------
 
         radioGroup = findViewById(R.id.daily_radioGroup)
@@ -131,8 +148,8 @@ class DailySalesActivity : AppCompatActivity() {
                 Log.d("my", "전체 보기")
                 recyclerView.adapter = DailyAdapter(all)
             } else if (checkedId == R.id.dailySalesShowSet) {
-                Log.d("my", "단품만 보기")
-                recyclerView.adapter = DailyAdapter(all)
+                Log.d("my", "세트 보기")
+                recyclerView.adapter = DailyAdapter(setmenu)
             } else if (checkedId == R.id.dailySalesShowSingle) {
                 Log.d("my", "단품만 보기")
                 recyclerView.adapter = DailyAdapter(burgers)
