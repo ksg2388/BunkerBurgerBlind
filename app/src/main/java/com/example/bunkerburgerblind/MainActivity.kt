@@ -1,16 +1,24 @@
 package com.example.bunkerburgerblind
 
+import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.location.LocationListener
+import android.location.LocationManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Window
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.DialogFragment
 import com.example.bunkerburgerblind.databinding.ActivityMainBinding
 import com.google.firebase.database.DataSnapshot
@@ -18,8 +26,22 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.loopj.android.http.AsyncHttpClient
+import com.loopj.android.http.JsonHttpResponseHandler
+import com.loopj.android.http.RequestParams
+import cz.msebera.android.httpclient.Header
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(), SendEventListener {
+
+    //날씨 관련 api 초기 설정
+    companion object {
+        const val API_KEY: String = "95e17a4fa68c3c2dc3189c71f73daba2"
+        const val WEATHER_URL: String = "https://api.openweathermap.org/data/2.5/weather"
+        const val MIN_TIME: Long = 5000
+        const val MIN_DISTANCE: Float = 1000F
+        const val WEATHER_REQUEST: Int = 102
+    }
 
     val itemList = arrayListOf<item_data>()      // 단품 메뉴 아이템 배열
     val listAdapter = ListAdapter(itemList)     // 단품 메뉴 rv 어댑터
@@ -28,6 +50,12 @@ class MainActivity : AppCompatActivity(), SendEventListener {
     private val database = Firebase.database
     private val myRef = database.getReference("bunkerburger")
 
+    private lateinit var temperature: TextView
+    private lateinit var weatherIcon: ImageView
+
+    private lateinit var mLocationManager: LocationManager
+    private lateinit var mLocationListener: LocationListener
+
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +63,9 @@ class MainActivity : AppCompatActivity(), SendEventListener {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        temperature = binding.weatherText
+        weatherIcon = binding.weatherImg
 
         if(intent.hasExtra("SBListFromSingle")) {
             SBList.addAll(intent.getSerializableExtra("SBListFromSingle") as ArrayList<shopping_basket_data>)
@@ -127,6 +158,11 @@ class MainActivity : AppCompatActivity(), SendEventListener {
         })
     }
 
+    override fun onResume() {
+        super.onResume()
+        getWeatherInCurrentLocation()
+    }
+
     private fun setDataAtFragment(fragment: DialogFragment, burger:ArrayList<MenuType>, side:ArrayList<MenuType>, beverage:ArrayList<MenuType>, SBList: ArrayList<shopping_basket_data>) {
         val bundle = Bundle()
         bundle.putSerializable("burger", burger)
@@ -164,4 +200,55 @@ class MainActivity : AppCompatActivity(), SendEventListener {
         "치킨버거" -> "https://ldb-phinf.pstatic.net/20221109_1/1667952663926qpsMD_JPEG/0ceywCe64k3pD-5CzrB9Pdw7zyR7Xt6r9Dg89bW4drc%3D.jpg"
         else -> ""
     }
+
+    private fun getWeatherInCurrentLocation(){
+        mLocationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        mLocationListener = LocationListener { p0 ->
+            val params: RequestParams = RequestParams()
+            params.put("lat", p0.latitude)
+            params.put("lon", p0.longitude)
+            params.put("appid", API_KEY)
+            doNetworking(params)
+        }
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(this, arrayOf<String>(Manifest.permission.ACCESS_FINE_LOCATION), WEATHER_REQUEST)
+            return
+        }
+        mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListener)
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListener)
+    }
+
+    private fun doNetworking(params: RequestParams) {
+        var client = AsyncHttpClient()
+
+        client.get(WEATHER_URL, params, object: JsonHttpResponseHandler(){
+            override fun onSuccess(
+                statusCode: Int,
+                headers: Array<out Header>?,
+                response: JSONObject?
+            ) {
+                val weatherData = WeatherData().fromJson(response)
+                if (weatherData != null) {
+                    updateWeather(weatherData)
+                }
+            }
+
+        })
+    }
+
+    private fun updateWeather(weather: WeatherData) {
+        temperature.text = weather.tempString+" ℃"
+        val resourceID = resources.getIdentifier(weather.icon, "drawable", packageName)
+        weatherIcon.setImageResource(resourceID)
+    }
+
 }
