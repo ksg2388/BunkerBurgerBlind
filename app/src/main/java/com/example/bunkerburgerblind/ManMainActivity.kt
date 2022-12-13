@@ -2,10 +2,9 @@ package com.example.bunkerburgerblind
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+<<<<<<< Updated upstream
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -15,14 +14,15 @@ import com.google.firebase.ktx.Firebase
 //var burgerList = ArrayList<MenuType>()
 //var sideList = ArrayList<MenuType>()
 //var beverageList = ArrayList<MenuType>()
+=======
+>>>>>>> Stashed changes
 
 class ManMainActivity : AppCompatActivity() {
-    val database = Firebase.database
-    val myRef = database.getReference("bunkerburger")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.man_main)
+<<<<<<< Updated upstream
 
 //        myRef.addValueEventListener(object : ValueEventListener {
 //            override fun onDataChange(snapshot: DataSnapshot) {
@@ -58,6 +58,8 @@ class ManMainActivity : AppCompatActivity() {
 //            }
 //        })
 
+=======
+>>>>>>> Stashed changes
 
         // 1일 판매 수량 보기 페이지로 이동
         val dailySalesBtn = findViewById<Button>(R.id.manDailySalesQuantity)

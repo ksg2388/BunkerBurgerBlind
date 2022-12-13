@@ -53,10 +53,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ManPWActivity::class.java)
             startActivity(intent)
         }
-         */
+        */
+
         val adminBtn = findViewById<Button>(R.id.admin_mode);
         adminBtn.setOnClickListener {
-            val intent = Intent(this, ManPWActivity::class.java)
+            val intent = Intent(this, ManMainActivity::class.java)
             startActivity(intent)
         }
 

@@ -74,7 +74,7 @@
 
                 android:text="전체 보기"
                 android:textColor="@color/purple_500"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <RadioButton
@@ -85,18 +85,7 @@
 
                 android:text="단품만 보기"
                 android:textColor="@color/purple_500"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-            <RadioButton
-                android:id="@+id/manageSalesShowSet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-
-                android:text="세트만 보기"
-                android:textColor="@color/purple_500"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <RadioButton
@@ -107,7 +96,7 @@
 
                 android:text="사이드만 보기"
                 android:textColor="@color/purple_500"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <RadioButton
@@ -117,7 +106,7 @@
 
                 android:text="음료만 보기"
                 android:textColor="@color/purple_500"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
         </RadioGroup>

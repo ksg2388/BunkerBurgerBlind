@@ -64,10 +64,17 @@ class DailySalesActivity : AppCompatActivity() {
                 for (item in burgerdata.children) {
                     val burgers = item.getValue(MenuType::class.java)
                     if (burgers != null) {
+<<<<<<< Updated upstream
                         burgerList.add(burgers)
                     }
                 }
                 //side data
+=======
+                        burger.add(ItemView(R.drawable.logo, burgers.name, burgers.usage, burgers.price * burgers.usage)) } }
+                all.addAll(burger)
+
+                // side 데이터 받아오기
+>>>>>>> Stashed changes
                 val sidedata = snapshot.child("menu").child("side")
                 for (item in sidedata.children) {
                     val sides = item.getValue(MenuType::class.java)
@@ -99,6 +106,7 @@ class DailySalesActivity : AppCompatActivity() {
                     count+=1
                 }
 
+<<<<<<< Updated upstream
                 for (item in burgerList) {
                     burgers.add(ItemView(item.img, item.name, item.usage, item.price * item.usage))
                     total_count += item.usage
@@ -131,6 +139,15 @@ class DailySalesActivity : AppCompatActivity() {
                 salesPrice.setText("총 판매 금액 ( ${total_sales} )")
 
                 recyclerView.adapter = DailyAdapter(all)
+=======
+                // beverage 데이터 받아오기
+                val drinkdata = snapshot.child("menu").child("beverage")
+                for (item in drinkdata.children) {
+                    val drinks = item.getValue(MenuType::class.java)
+                    if (drinks != null) {
+                        beverage.add(ItemView(R.drawable.logo, drinks.name, drinks.usage, drinks.price * drinks.usage)) } }
+                all.addAll(beverage)
+>>>>>>> Stashed changes
             }
 
 
@@ -138,7 +155,18 @@ class DailySalesActivity : AppCompatActivity() {
                 Log.e("실패", "실패")
             }
         })
+<<<<<<< Updated upstream
         
+=======
+
+        beverage.add(ItemView(R.drawable.logo, "콜라", 500, 50000))
+        beverage.add(ItemView(R.drawable.logo, "청포도에이드", 600, 60000))
+
+        all.addAll(burger)
+        all.addAll(side)
+        all.addAll(beverage)
+
+>>>>>>> Stashed changes
         // ---------------
 
         radioGroup = findViewById(R.id.daily_radioGroup)
