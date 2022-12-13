@@ -116,7 +116,7 @@ class DailySalesActivity : AppCompatActivity() {
                     total_count += item.usage
                     total_sales += item.price * item.usage
                 }
-                setmenu.add(ItemView("https://search.pstatic.net/common/?autoRotate=true&quality=95&src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20211231_5%2F1640910271545DWPcR_JPEG%2FiyDzBVLyX_amrf1hxw4QExVlh74nY7yRaXYV0NT6CKM%253D.jpg&type=h166", "9,500 세트", set95_count, set95_count * 9500))
+                setmenu.add(ItemView("https://ldb-phinf.pstatic.net/20211231_5/1640910271545DWPcR_JPEG/iyDzBVLyX_amrf1hxw4QExVlh74nY7yRaXYV0NT6CKM%3D.jpg", "9,500 세트", set95_count, set95_count * 9500))
                 setmenu.add(ItemView("https://ldb-phinf.pstatic.net/20220107_13/1641535879315peyUt_JPEG/MhijmaKlTEF2g5QOvUvnUBGl7ZKqizQNECULrnggtMA%3D.jpg", "10,500 세트", set105_count, set105_count * 10500))
                 total_count += set95_count
                 total_count += set105_count
