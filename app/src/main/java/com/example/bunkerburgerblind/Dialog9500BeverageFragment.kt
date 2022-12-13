@@ -20,6 +20,7 @@ class Dialog9500BeverageFragment : DialogFragment() {
     private lateinit var side: ArrayList<MenuType>
     private lateinit var beverage: ArrayList<MenuType>
     private lateinit var setList: ArrayList<String>
+    var SBList = arrayListOf<shopping_basket_data>() //장바구니 아이템 배열
 
     lateinit var sendEventListener: SendEventListener
 
@@ -50,6 +51,7 @@ class Dialog9500BeverageFragment : DialogFragment() {
         side = arguments?.getSerializable("side") as ArrayList<MenuType>
         beverage = arguments?.getSerializable("beverage") as ArrayList<MenuType>
         setList = arguments?.getSerializable("setList") as ArrayList<String>
+        SBList = arguments?.getSerializable("SBList") as ArrayList<shopping_basket_data>
         var totalCost = arguments?.getInt("totalCost")!!
         var prevTotalCost = arguments?.getInt("prevTotalCost")!!
 
@@ -60,7 +62,7 @@ class Dialog9500BeverageFragment : DialogFragment() {
             setList.removeLast()
             totalCost = prevTotalCost
             val dialog = Dialog9500SideFragment()
-            setDataAtFragment(dialog, burger, side, beverage, setList, totalCost)
+            setDataAtFragment(dialog, burger, side, beverage, setList, totalCost, SBList)
             dismiss()
         }
         binding.nextBtn.setOnClickListener{
@@ -69,6 +71,7 @@ class Dialog9500BeverageFragment : DialogFragment() {
             val intent = Intent(activity, MainActivity::class.java)
             intent.putExtra("setList", setList)
             intent.putExtra("totalCost", totalCost)
+            intent.putExtra("SBListFromSemMenu", SBList)
             startActivity(intent)
             dismiss()
         }
@@ -77,13 +80,14 @@ class Dialog9500BeverageFragment : DialogFragment() {
         return view
     }
 
-    private fun setDataAtFragment(fragment:DialogFragment, burger:ArrayList<MenuType>, side:ArrayList<MenuType>, beverage:ArrayList<MenuType>, setList:ArrayList<String>, totalCost: Int) {
+    private fun setDataAtFragment(fragment:DialogFragment, burger:ArrayList<MenuType>, side:ArrayList<MenuType>, beverage:ArrayList<MenuType>, setList:ArrayList<String>, totalCost: Int, SBList:ArrayList<shopping_basket_data>) {
         val bundle = Bundle()
         bundle.putSerializable("burger", burger)
         bundle.putSerializable("side", side)
         bundle.putSerializable("beverage", beverage)
         bundle.putSerializable("setList", setList)
         bundle.putInt("totalCost", totalCost)
+        bundle.putSerializable("SBList", SBList)
 
         fragment.arguments = bundle
         activity?.let { fragment.show(it.supportFragmentManager, "Custom") }

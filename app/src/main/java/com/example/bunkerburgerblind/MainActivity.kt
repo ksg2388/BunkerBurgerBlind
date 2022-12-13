@@ -1,10 +1,13 @@
 package com.example.bunkerburgerblind
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Window
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -34,9 +37,15 @@ class MainActivity : AppCompatActivity(), SendEventListener {
         setContentView(binding.root)
 
         if(intent.hasExtra("SBListFromSingle")) {
-            SBList = intent.getSerializableExtra("SBListFromSingle") as ArrayList<shopping_basket_data>
+            SBList.addAll(intent.getSerializableExtra("SBListFromSingle") as ArrayList<shopping_basket_data>)
             SetPrice()
         }
+
+        if(intent.hasExtra("SBListFromSemMenu")) {
+            SBList.addAll(intent.getSerializableExtra("SBListFromSemMenu") as ArrayList<shopping_basket_data>)
+            SetPrice()
+        }
+
 
         val burger = ArrayList<MenuType>()
         val side = ArrayList<MenuType>()
@@ -45,9 +54,11 @@ class MainActivity : AppCompatActivity(), SendEventListener {
         // 세트메뉴 받아오기
         if (intent.hasExtra("setList")) {
             val shoppingBag = intent.getSerializableExtra("setList") as ArrayList<String>
-        }
-        if (intent.hasExtra("totalCost")) {
             val totalCost = intent.getIntExtra("totalCost", 0)
+            val url = setMenuImg(shoppingBag[0])
+
+            SBList.add(shopping_basket_data("${shoppingBag[0]} 세트", totalCost.toString(), url, 1, 1))
+            SetPrice()
         }
 
         myRef.addValueEventListener(object: ValueEventListener{
@@ -93,7 +104,7 @@ class MainActivity : AppCompatActivity(), SendEventListener {
 
         binding.orderSet.setOnClickListener {
             val dialog = Dialog9500Fragment()
-            setDataAtFragment(dialog, burger, side, beverage)
+            setDataAtFragment(dialog, burger, side, beverage, SBList)
         }
 
         binding.orderSingle.setOnClickListener {
@@ -116,11 +127,12 @@ class MainActivity : AppCompatActivity(), SendEventListener {
         })
     }
 
-    private fun setDataAtFragment(fragment: DialogFragment, burger:ArrayList<MenuType>, side:ArrayList<MenuType>, beverage:ArrayList<MenuType>) {
+    private fun setDataAtFragment(fragment: DialogFragment, burger:ArrayList<MenuType>, side:ArrayList<MenuType>, beverage:ArrayList<MenuType>, SBList: ArrayList<shopping_basket_data>) {
         val bundle = Bundle()
         bundle.putSerializable("burger", burger)
         bundle.putSerializable("side", side)
         bundle.putSerializable("beverage", beverage)
+        bundle.putSerializable("SBList", SBList)
 
         fragment.arguments = bundle
         fragment.show(supportFragmentManager, "Custom")
@@ -132,14 +144,24 @@ class MainActivity : AppCompatActivity(), SendEventListener {
 
     fun SetPrice(){ //결제 금액 set
         var sum = 0
-        if(SBList.isEmpty()==true)
-            binding.price.setText("0")
+        if(SBList.isEmpty())
+            binding.price.text = "0"
         else{
             for (item in SBList){
-                sum = sum + item.price.toInt() * item.cnt
+                sum += item.price.toInt() * item.cnt
             }
-            binding.price.setText(sum.toString())
+            binding.price.text = sum.toString()
         }
     }
 
+    private fun setMenuImg(name: String): String = when (name) {
+        "클래식버거" -> "https://ldb-phinf.pstatic.net/20220107_278/1641535879321KaiSp_JPEG/PzZOC7kNrNLLnPijxXqSqjCmuiM6Q4kythrBJt9pz9k%3D.jpg"
+        "오리지날버거" -> "https://ldb-phinf.pstatic.net/20220107_166/1641535879214K246K_JPEG/3UxoulxuWPXOy5yuw0MmJtkoX6cIt-tTvZsj_PGm6d0%3D.jpg"
+        "맥 앤 치즈버거" -> "https://ldb-phinf.pstatic.net/20220107_25/1641535879543Bcz0w_JPEG/aTJLucIxij1jlRLQwAzqKMpFgiigDIUDz5DurxXNzHc%3D.jpg"
+        "칠리버거" -> "https://ldb-phinf.pstatic.net/20220107_248/1641535879709OU7Jh_JPEG/DdUdHI2h6geZ8lacm2Y26unpiiQtzIliK4FozplNBHk%3D.jpg"
+        "BBQ버거" -> "https://ldb-phinf.pstatic.net/20220107_13/1641535879315peyUt_JPEG/MhijmaKlTEF2g5QOvUvnUBGl7ZKqizQNECULrnggtMA%3D.jpg"
+        "더블치즈 해쉬브라운버거" -> "https://ldb-phinf.pstatic.net/20220107_247/16415358793129mpH8_JPEG/PR2H9gj8sd015EnGmXnrsmQs_fMZR-ZjKITC382W55Q%3D.jpg"
+        "치킨버거" -> "https://ldb-phinf.pstatic.net/20221109_1/1667952663926qpsMD_JPEG/0ceywCe64k3pD-5CzrB9Pdw7zyR7Xt6r9Dg89bW4drc%3D.jpg"
+        else -> ""
+    }
 }
