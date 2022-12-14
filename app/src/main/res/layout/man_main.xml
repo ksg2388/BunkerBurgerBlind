@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ManMainActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:minHeight="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="BunkerBurgerBlind"
+            android:textColor="#FFFF33"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <!-- 주문량 1위 메뉴 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="20dp"
+
+                android:text="단품 주문량 1위"
+                android:textSize="25dp"/>
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:src="@drawable/logo"
+                android:layout_marginBottom="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="20dp"
+
+                android:text="단품 메뉴 이름"
+                android:textSize="25dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="20dp"
+
+                android:text="세트 주문량 1위"
+                android:textSize="25dp"/>
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:src="@drawable/logo"
+                android:layout_marginBottom="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="20dp"
+
+                android:text="세트 메뉴 이름"
+                android:textSize="25dp"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <!-- 구분선 -->
+    <View
+        android:background="@color/purple_500"
+        android:layout_width="match_parent"
+        android:layout_height="12px"
+        android:layout_marginBottom="50dp"/>
+
+
+
+    <Button
+        android:id="@+id/manDailySalesQuantity"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+
+        android:background="@drawable/man_main_btn_background"
+        android:elevation="10dp"
+        android:layout_marginBottom="20dp"
+        android:paddingVertical="15dp"
+
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="1일 판매 수량 보기"/>
+
+    <Button
+        android:id="@+id/manInventoryStatus"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+
+        android:background="@drawable/man_main_btn_background"
+        android:elevation="10dp"
+        android:layout_marginBottom="20dp"
+        android:paddingVertical="15dp"
+
+        android:textSize="40dp"
+        android:textStyle="bold"
+
+        android:textColor="@color/white"
+        android:text="재고 현황 보기"/>
+
+    <Button
+        android:id="@+id/manManagementMenu"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+
+        android:background="@drawable/man_main_btn_background"
+        android:elevation="10dp"
+        android:layout_marginBottom="50dp"
+        android:paddingVertical="15dp"
+
+
+        android:textSize="40dp"
+        android:textStyle="bold"
+
+        android:textColor="@color/white"
+        android:text="메뉴 관리하기"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:padding="10dp"
+
+        android:textSize="30dp"
+        android:text="화면 끝" />
+</LinearLayout>
