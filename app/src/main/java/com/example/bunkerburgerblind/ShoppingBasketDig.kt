@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.bunkerburgerblind.databinding.ShoppingBasketDialogBinding
 
@@ -61,7 +62,20 @@ class ShoppingBasketDig(context: Context, val itemList: ArrayList<shopping_baske
         binding.btnSbBuy.setOnClickListener{
             onClickListener.onClicked()
             dialog.dismiss()
-        }
+                if(itemList.isEmpty()) {
+                    val toast = Toast.makeText(
+                        dialog.context,
+                        "담은 메뉴가 없습니다.",
+                        Toast.LENGTH_SHORT
+                    )
+                    toast.show()
+                }
+                else{
+                    val dialog = PaymentPlaceChoiceDig(dialog.context)
+                    dialog.PPCDig(itemList)
+                }
+            }
+
 
         binding.btnSbCancel.setOnClickListener{
             onClickListener.onClicked()
