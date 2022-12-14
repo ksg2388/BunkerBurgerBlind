@@ -46,6 +46,10 @@ class Dialog9500Fragment : DialogFragment() {
 
         burger = ArrayList(burger.sortedBy { it.price })
 
+        binding.closeBtn.setOnClickListener {
+            dismiss()
+        }
+
         binding.prevBtn.setOnClickListener{
             dismiss()
         }

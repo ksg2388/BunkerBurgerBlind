@@ -221,7 +221,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#A0A0A0" />
+                android:background="#A0A0A0"
+                android:layout_marginBottom="10dp"/>
 
 
             <Button
@@ -233,7 +234,10 @@
                 android:layout_marginVertical="10dp"
                 android:padding="25dp"
                 android:text="단품 주문하기\n기본음식만 제공돼요"
-                android:textSize="45dp" />
+                android:textSize="45dp"
+                android:background="@drawable/button_radius"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
 
             <Button
                 android:id="@+id/order_set"
@@ -243,15 +247,11 @@
                 android:layout_marginHorizontal="60dp"
                 android:padding="25dp"
                 android:text="세트 주문하기\n음식과 음료가 함께 제공돼요"
-                android:textSize="45dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="30dp"
-                android:text="화면 끝"
-                android:textSize="35dp" />
+                android:textSize="45dp"
+                android:background="@drawable/button_radius"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                />
 
             <Button
                 android:id="@+id/admin_mode"
@@ -262,7 +262,11 @@
                 android:layout_marginVertical="40dp"
                 android:padding="20dp"
                 android:text="관리자 모드로 전환하기"
-                android:textSize="40dp" />
+                android:textSize="40dp"
+                android:background="@drawable/button_radius"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                />
 
         </LinearLayout>
     </ScrollView>

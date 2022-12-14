@@ -12,7 +12,7 @@ class WeatherData{
     private var tempInt: Int =0
 
     fun fromJson(jsonObject: JSONObject?): WeatherData? {
-        try{
+        return try{
             var weatherData = WeatherData()
             weatherData.weatherId = jsonObject?.getJSONArray("weather")?.getJSONObject(0)?.getInt("id")!!
             weatherData.weatherType = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main")
@@ -20,10 +20,10 @@ class WeatherData{
             val roundedTemp: Int = (jsonObject.getJSONObject("main").getDouble("temp")-273.15).toInt()
             weatherData.tempString = roundedTemp.toString()
             weatherData.tempInt = roundedTemp
-            return weatherData
+            weatherData
         }catch (e: JSONException){
             e.printStackTrace()
-            return null
+            null
         }
     }
 
