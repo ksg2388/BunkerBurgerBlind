@@ -52,7 +52,7 @@ class UserFragment(val itemList: ArrayList<item_data>, val SBList: ArrayList<sho
                         if(flag == false) {
                             var name = ArrayList<String>()
                             name.add(itemList[position].name)
-                            SBList.add(shopping_basket_data(itemList[position].type, name, itemList[position].price.toString(), itemList[position].img, text))
+                            SBList.add(shopping_basket_data(itemList[position].type, name, itemList[position].price.toString(), itemList[position].img, text, itemList[position].stock))
                         }
 
                         flag = false //장바구니에 아이템 추가(장바구니 데이터 구조 바꿀 필요 있을 듯 함)

@@ -6,5 +6,5 @@ data class shopping_basket_data(//장바구니 데이터 클래스(장바구니 
     var price: String,
     var img: String,
     var cnt: Int,
-    var stock:Int = 0,
+    var stock:Int,
 ): java.io.Serializable

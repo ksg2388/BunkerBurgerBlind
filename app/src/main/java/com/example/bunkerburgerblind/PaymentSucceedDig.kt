@@ -58,7 +58,7 @@ class PaymentSucceedDig(context: Context) {
                     }
                 })
                 val datapaths = myRef.child(item.type).child(item.name[0])
-                datapaths.child("stock").setValue(600)
+                datapaths.child("stock").setValue(item.stock - item.cnt)
             }
             SBList.clear()
 
