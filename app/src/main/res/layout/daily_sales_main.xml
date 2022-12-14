@@ -33,7 +33,7 @@
             android:layout_marginVertical="5dp"
             android:background="@drawable/man_main_btn_background"
             android:paddingHorizontal="30dp"
-
+            android:textStyle="bold"
             android:text="뒤로가기"
             android:textSize="20dp"
             android:textColor="@color/white"/>

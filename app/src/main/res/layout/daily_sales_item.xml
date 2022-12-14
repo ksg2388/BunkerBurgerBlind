@@ -43,8 +43,8 @@
                 android:id="@+id/daily_item_quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textSize="23dp"
                 android:textColor="@color/white"
                 android:text="총 판매수량( )" />
 
@@ -52,8 +52,8 @@
                 android:id="@+id/daily_item_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textSize="23dp"
                 android:textColor="@color/white"
                 android:text="총 판매금액( )" />
 

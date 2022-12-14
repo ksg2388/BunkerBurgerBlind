@@ -32,5 +32,11 @@ class ManMainActivity : AppCompatActivity() {
             val intent = Intent(this, ManageMenuActivity::class.java)
             startActivity(intent)
         }
+
+        val gohome = findViewById<Button>(R.id.gohome)
+        gohome.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

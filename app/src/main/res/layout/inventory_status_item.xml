@@ -51,7 +51,8 @@
                     android:text="보유량()"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="23dp" />
+                    android:textSize="23dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/inventory_item_usage"
@@ -61,7 +62,8 @@
                     android:text="사용량()"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="23dp" />
+                    android:textSize="23dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </LinearLayout>

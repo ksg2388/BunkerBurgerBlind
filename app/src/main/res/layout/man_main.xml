@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".ManMainActivity">
 
 
@@ -32,87 +31,87 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_weight="1">
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_weight="1"
             android:gravity="center"
-            android:layout_weight="1">
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:layout_marginBottom="20dp"
-
                 android:text="단품 주문량 1위"
-                android:textSize="25dp"/>
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="130dp"
                 android:layout_height="130dp"
-                android:src="@drawable/logo"
-                android:layout_marginBottom="20dp" />
+                android:layout_margin="10dp"
+                android:src="@drawable/classic_burger" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:layout_marginBottom="20dp"
-
-                android:text="단품 메뉴 이름"
-                android:textSize="25dp"/>
+                android:layout_weight="1"
+                android:text="클래식 버거"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_weight="1"
             android:gravity="center"
-            android:layout_weight="1">
-
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:layout_marginBottom="20dp"
-
                 android:text="세트 주문량 1위"
-                android:textSize="25dp"/>
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:layout_width="130dp"
                 android:layout_height="130dp"
-                android:src="@drawable/logo"
-                android:layout_marginBottom="20dp" />
+                android:layout_margin="10dp"
+                android:src="@drawable/original_set" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:layout_marginBottom="20dp"
-
-                android:text="세트 메뉴 이름"
-                android:textSize="25dp"/>
+                android:layout_weight="1"
+                android:text="오리지날 버거 세트"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
-
 
 
     </LinearLayout>
 
     <!-- 구분선 -->
     <View
-        android:background="@color/purple_500"
         android:layout_width="match_parent"
-        android:layout_height="12px"
-        android:layout_marginBottom="50dp"/>
+        android:layout_height="2dp"
+        android:background="#A0A0A0"
+        android:layout_marginBottom="25dp"/>
 
 
 
@@ -121,53 +120,70 @@
         android:layout_width="500dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
 
+        android:layout_weight="1"
         android:background="@drawable/man_main_btn_background"
         android:elevation="10dp"
-        android:layout_marginBottom="20dp"
         android:paddingVertical="15dp"
 
-        android:textSize="40dp"
-        android:textStyle="bold"
+        android:text="1일 판매 수량 보기"
         android:textColor="@color/white"
-        android:text="1일 판매 수량 보기"/>
+        android:textSize="40dp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/manInventoryStatus"
         android:layout_width="500dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
 
+        android:layout_weight="1"
         android:background="@drawable/man_main_btn_background"
         android:elevation="10dp"
-        android:layout_marginBottom="20dp"
         android:paddingVertical="15dp"
 
-        android:textSize="40dp"
-        android:textStyle="bold"
-
+        android:text="재고 현황 보기"
         android:textColor="@color/white"
-        android:text="재고 현황 보기"/>
 
+        android:textSize="40dp"
+        android:textStyle="bold" />
     <Button
         android:id="@+id/manManagementMenu"
         android:layout_width="500dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
 
+        android:layout_weight="1"
         android:background="@drawable/man_main_btn_background"
         android:elevation="10dp"
-        android:layout_marginBottom="50dp"
+        android:paddingVertical="15dp"
+
+        android:text="메뉴 관리하기"
+        android:textColor="@color/white"
+
+        android:textSize="40dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/gohome"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+
+        android:layout_weight="1"
+        android:background="@drawable/man_main_btn_background"
+        android:elevation="10dp"
         android:paddingVertical="15dp"
 
 
-        android:textSize="40dp"
-        android:textStyle="bold"
-
+        android:text="뒤로가기"
         android:textColor="@color/white"
-        android:text="메뉴 관리하기"/>
+
+        android:textSize="40dp"
+        android:textStyle="bold" />
 
 </LinearLayout>
