@@ -114,6 +114,7 @@
         android:textStyle="bold"
         android:gravity="center"/>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -131,6 +132,7 @@
             android:gravity="center"/>
 
         <TextView
+            android:id="@+id/price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="가격"
@@ -141,6 +143,33 @@
             android:layout_weight="1"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="결제 성공\n(테스트버튼)"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="10dp"
+            android:backgroundTint="#FFD400"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="잔액 부족\n(테스트버튼)"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="10dp"
+            android:backgroundTint="#FFD400"
+
+            android:layout_weight="1"/>
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -148,19 +177,13 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="처음 화면으로"
-            android:layout_weight="1"
+            android:text="결제 취소"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:layout_marginHorizontal="10dp"
-            android:backgroundTint="#FFD400"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="뒤로가기"
-            android:layout_weight="1"
-            android:layout_marginRight="10dp"
             android:backgroundTint="#FFD400"/>
     </LinearLayout>
 

@@ -1,10 +1,10 @@
 package com.example.bunkerburgerblind
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.bunkerburgerblind.databinding.SingleMenuMainBinding
 import com.google.firebase.database.DataSnapshot
@@ -73,7 +73,7 @@ class SimpleMenuActivity : AppCompatActivity() {
                     val price: Long = ds.child("price").value as Long
                     val examination: String = ds.child("examination").value as String
                     Log.e("스냅", ds.toString())
-                    burgerList.add(item_data(imageStr, usage.toInt(), name, examination,id.toInt(),price.toInt(), stock.toInt()))
+                    burgerList.add(item_data("burger",imageStr, usage.toInt(), name, examination,id.toInt(),price.toInt(), stock.toInt()))
                     listAdapter.notifyDataSetChanged()
                 }
                 Renew1stOrder()
@@ -88,7 +88,7 @@ class SimpleMenuActivity : AppCompatActivity() {
                     val price: Long = ds.child("price").value as Long
                     val examination: String = ds.child("examination").value as String
                     Log.e("스냅", ds.toString())
-                    sideList.add(item_data(imageStr, usage.toInt(), name, examination,id.toInt(),price.toInt(), stock.toInt()))
+                    sideList.add(item_data("side",imageStr, usage.toInt(), name, examination,id.toInt(),price.toInt(), stock.toInt()))
                     listAdapter.notifyDataSetChanged()
                 }
 
@@ -102,7 +102,7 @@ class SimpleMenuActivity : AppCompatActivity() {
                     val price: Long = ds.child("price").value as Long
                     val examination: String = ds.child("examination").value as String
                     Log.e("스냅", ds.toString())
-                    beverageList.add(item_data(imageStr, usage.toInt(), name, examination,id.toInt(),price.toInt(), stock.toInt()))
+                    beverageList.add(item_data("beverage",imageStr, usage.toInt(), name, examination,id.toInt(),price.toInt(), stock.toInt()))
                     listAdapter.notifyDataSetChanged()
                 }
 
@@ -123,9 +123,24 @@ class SimpleMenuActivity : AppCompatActivity() {
             }
         })
 
-        itemList.add(item_data("", 0, "품절 테스트", "재고가 품절이라면 우측에 품절이라고 뜹니다.",100,1000, 0))
-        itemList.add(item_data("", 0, "최대 주문 테스트", "주문 수량이 재고를 넘을 수 없습니다.",100,1000, 10))
+        itemList.add(item_data("","", 0, "품절 테스트", "재고가 품절이라면 우측에 품절이라고 뜹니다.",100,1000, 0))
+        itemList.add(item_data("","", 0, "최대 주문 테스트", "주문 수량이 재고를 넘을 수 없습니다.",100,1000, 10))
         listAdapter.notifyDataSetChanged()
+
+        binding.payment.setOnClickListener {
+            if(SBList.isEmpty()) {
+                val toast = Toast.makeText(
+                    this@SimpleMenuActivity,
+                    "담은 메뉴가 없습니다.",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
+            }
+            else{
+                val dialog = PaymentPlaceChoiceDig(this@SimpleMenuActivity)
+                dialog.PPCDig(SBList)
+            }
+        }
     }
 
     fun SetPrice(){ //결제 금액 set
@@ -160,8 +175,4 @@ class SimpleMenuActivity : AppCompatActivity() {
             .into(binding.single1stImg)
         //세트 주문량 1위 추가 필요(데이터 클래스 및 DB에서 불러오기)
     }
-}
-
-class paymentDig(context: Context){
-
 }

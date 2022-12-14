@@ -21,7 +21,7 @@ class SBListAdapter(val itemList: ArrayList<shopping_basket_data>): RecyclerView
     }
     // (3) View에 내용 입력
     override fun onBindViewHolder(holder: SBListAdapter.ViewHolder, position: Int) {
-        holder.name.text = itemList[position].name
+        holder.name.text = itemList[position].name[0]
         holder.price.text = itemList[position].price
         holder.cnt.text = itemList[position].cnt.toString()
 

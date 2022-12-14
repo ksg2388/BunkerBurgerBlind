@@ -1,6 +1,7 @@
 package com.example.bunkerburgerblind
 
 data class item_data(
+    var type: String = "",
     var img:String = "",
     var usage:Int = 0,
     var name:String = "",

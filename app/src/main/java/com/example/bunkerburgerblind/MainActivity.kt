@@ -84,11 +84,15 @@ class MainActivity : AppCompatActivity(), SendEventListener {
 
         // 세트메뉴 받아오기
         if (intent.hasExtra("setList")) {
+            var name = ArrayList<String>()
+
             val shoppingBag = intent.getSerializableExtra("setList") as ArrayList<String>
             val totalCost = intent.getIntExtra("totalCost", 0)
             val url = setMenuImg(shoppingBag[0])
 
-            SBList.add(shopping_basket_data("${shoppingBag[0]} 세트", totalCost.toString(), url, 1, 1))
+            name.add("${shoppingBag[0]} 세트")
+
+            SBList.add(shopping_basket_data("set",name, totalCost.toString(), url, 1, 1))
             SetPrice()
         }
 
@@ -133,6 +137,21 @@ class MainActivity : AppCompatActivity(), SendEventListener {
             })
         }
 
+        binding.payment.setOnClickListener {
+            if(SBList.isEmpty()) {
+                val toast = Toast.makeText(
+                    this@MainActivity,
+                    "담은 메뉴가 없습니다.",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
+            }
+            else{
+                val dialog = PaymentPlaceChoiceDig(this@MainActivity)
+                dialog.PPCDig(SBList)
+            }
+        }
+
         binding.orderSet.setOnClickListener {
             val dialog = Dialog9500Fragment()
             setDataAtFragment(dialog, burger, side, beverage, SBList)
@@ -141,6 +160,13 @@ class MainActivity : AppCompatActivity(), SendEventListener {
         binding.orderSingle.setOnClickListener {
             val intent = Intent(this@MainActivity,SimpleMenuActivity::class.java)
             intent.putExtra("SBListFromMain", SBList)
+            startActivity(intent)
+        }
+
+        // 관리자 페이지로 이동
+        val adminBtn = findViewById<Button>(R.id.admin_mode);
+        adminBtn.setOnClickListener {
+            val intent = Intent(this, ManPWActivity::class.java)
             startActivity(intent)
         }
 
