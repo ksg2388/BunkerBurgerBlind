@@ -157,17 +157,19 @@
         <Button
             android:id="@+id/btn_sm_put"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_margin="10sp"
             android:backgroundTint="#696969"
             android:text="장바구니에 담기"
+            android:textStyle="bold"
             android:layout_weight="1"/>
 
         <Button
             android:id="@+id/btn_sm_cancel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_margin="10sp"
+            android:textStyle="bold"
             android:backgroundTint="#696969"
             android:text="뒤로 가기"
             android:layout_weight="1"/>

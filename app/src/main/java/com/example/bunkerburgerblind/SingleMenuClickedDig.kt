@@ -67,13 +67,15 @@ class SingleMenuClickedDig(context: Context){
             downarrow.isEnabled = false
         }
 
-        if(flag && cnt+1 + inStock >= max) {
+        if(flag && inStock >= max) {
             stockInfo.text = "최대 주문 가능 수량에 도달하였습니다."
             stockInfo.setTextColor(Color.parseColor("#DC143C"))
             btnPut.isEnabled = false
             count.setText("0")
             uparrow.isEnabled = false
             downarrow.isEnabled = false
+        } else if(flag && inStock + 1 >= max){
+            uparrow.isEnabled = false
         }
 
         btnPut.setOnClickListener{

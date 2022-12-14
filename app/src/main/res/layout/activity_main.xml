@@ -316,6 +316,7 @@
 
 
         <Button
+            android:id="@+id/payment"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:gravity="center"

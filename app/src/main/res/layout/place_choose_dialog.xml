@@ -119,8 +119,9 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/at_shop"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:text="매장에서 식사"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -129,8 +130,9 @@
             android:layout_marginHorizontal="10dp"/>
 
         <Button
+            android:id="@+id/at_house"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:text="포장 주문"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -140,9 +142,12 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="뒤로 가기"
+        android:text="결제 취소"
+        android:textStyle="bold"
+        android:textSize="20sp"
         android:layout_marginHorizontal="10dp"
         android:backgroundTint="#FFD400"/>
 

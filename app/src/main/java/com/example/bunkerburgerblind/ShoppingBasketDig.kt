@@ -68,6 +68,12 @@ class ShoppingBasketDig(context: Context, val itemList: ArrayList<shopping_baske
             dialog.dismiss()
         }
 
+        binding.btnSbClear.setOnClickListener {
+            itemList.clear()
+            adapter.notifyDataSetChanged()
+            SetPrice()
+        }
+
         adapter.setItemClickListener(object: SBListAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
                 // 클릭 시 이벤트 작성

@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/using_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="() 사용 현황"
+        android:textColor="@color/purple_500"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <!-- 구분선d -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6px"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/purple_500" />
+
+    <TextView
+        android:id="@+id/using_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="1234"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/using_stock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="보유량:"
+        android:textSize="25dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/order_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="주문할 수량을 입력하세요. (예 : 3)"
+            android:textSize="20dp"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/makeOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주문하기"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

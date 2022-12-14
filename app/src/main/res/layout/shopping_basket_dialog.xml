@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFD400"
+        android:background="#696969"
         android:minHeight="?attr/actionBarSize">
 
         <TextView
@@ -18,14 +18,33 @@
             android:layout_height="wrap_content"
             android:text="장바구니"
             android:textSize="22sp"
-            android:textColor="@color/white"
+            android:textColor="#FFFF33"
             android:textStyle="bold"
             android:layout_gravity="center" />
     </androidx.appcompat.widget.Toolbar>
 
-    <View
+    <Button
+        android:id="@+id/btn_sb_clear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:text="장바구니 비우기"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:backgroundTint="#FFD400"/>
+
+    <TextView
+        android:text="장바구니 비우기 버튼을 누르면 장바구니가 초기화됩니다."
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="30dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#A0A0A0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Rv_menu"
@@ -39,6 +58,10 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_weight="1"
         android:layout_gravity="center"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#A0A0A0" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -75,26 +98,30 @@
         <Button
             android:id="@+id/btn_sb_buy"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="10sp"
             android:layout_marginRight="10sp"
             android:layout_weight="1"
-            android:backgroundTint="#FFD400"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:backgroundTint="#696969"
             android:gravity="center"
             android:text="결제하기" />
 
         <Button
             android:id="@+id/btn_sb_cancel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_gravity="bottom"
             android:gravity="center"
             android:text="뒤로가기"
             android:layout_weight="1"
+            android:textSize="20dp"
+            android:textStyle="bold"
             android:layout_marginLeft="10sp"
             android:layout_marginRight="10sp"
-            android:backgroundTint="#FFD400"/>
+            android:backgroundTint="#696969"/>
     </LinearLayout>
 
 </LinearLayout>
