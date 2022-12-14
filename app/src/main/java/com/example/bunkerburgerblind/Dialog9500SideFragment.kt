@@ -47,7 +47,9 @@ class Dialog9500SideFragment : DialogFragment() {
 
         side = ArrayList(side.sortedBy { it.price })
 
-        Log.d("장바구니", setList[0])
+        binding.closeBtn.setOnClickListener {
+            dismiss()
+        }
 
         binding.prevBtn.setOnClickListener{
             val dialog = Dialog9500Fragment()

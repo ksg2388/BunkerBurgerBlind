@@ -58,6 +58,10 @@ class Dialog9500BeverageFragment : DialogFragment() {
 
         beverage = ArrayList(beverage.sortedBy { it.price })
 
+        binding.closeBtn.setOnClickListener {
+            dismiss()
+        }
+
         binding.prevBtn.setOnClickListener{
             setList.removeLast()
             totalCost = prevTotalCost
