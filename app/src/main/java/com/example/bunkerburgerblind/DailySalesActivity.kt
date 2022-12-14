@@ -89,11 +89,11 @@ class DailySalesActivity : AppCompatActivity() {
                 for (i in test1+1) {
                     val test = snapshot.child("order").child(count.toString()).child("name").getValue()
                     if(test=="10,500 세트"){
-                        Log.e("order name",test.toString() )
+
                         set105_count+=1
                     }
                     else if(test=="9,500 세트"){
-                        Log.e("order name",test.toString() )
+
                         set95_count+=1
                     }
                     count+=1

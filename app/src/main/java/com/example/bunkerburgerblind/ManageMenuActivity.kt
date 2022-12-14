@@ -470,5 +470,3 @@ class ManageMenuActivity : AppCompatActivity() {
         }
     }
 }
-
-
