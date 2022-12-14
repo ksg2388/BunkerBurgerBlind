@@ -3,10 +3,14 @@ package com.example.bunkerburgerblind
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.WindowManager
 import com.example.bunkerburgerblind.databinding.PaymentSucceedDialogBinding
 import com.example.bunkerburgerblind.databinding.ShoppingBasketDialogBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.security.AccessController.getContext
@@ -22,7 +26,7 @@ class PaymentSucceedDig(context: Context) {
 
     fun PHCDig(SBList: ArrayList<shopping_basket_data>){
         database = Firebase.database.reference
-        val datapath = database.child("bunkerburger").child("menu")
+        val myRef = database.child("bunkerburger").child("menu")
 
         binding = PaymentSucceedDialogBinding.inflate(dialog.layoutInflater)
 
@@ -38,6 +42,24 @@ class PaymentSucceedDig(context: Context) {
         binding.ok.setOnClickListener {
             dialog.dismiss()
 
+            for (item in SBList){
+                println(item.stock)
+                println(item.stock - item.cnt)
+                myRef.addValueEventListener(object: ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val menu = snapshot.child("menu")
+
+                        val st = menu.child(item.type).child(item.name[0]).child("stock").value
+                        println(st)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.e("실패", "실패")
+                    }
+                })
+                val datapaths = myRef.child(item.type).child(item.name[0])
+                datapaths.child("stock").setValue(600)
+            }
             SBList.clear()
 
             val intent = Intent(dialog.context, MainActivity::class.java)
