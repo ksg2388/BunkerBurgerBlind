@@ -44,12 +44,17 @@ class UserFragment(val itemList: ArrayList<item_data>, val SBList: ArrayList<sho
                 dialog.setOnClickedListener(object: SingleMenuClickedDig.ButtonClickListener{
                     override fun PutSBonClick(text: Int){ //장바구니 추가
                         for (item in SBList){
-                            if(item.name == itemList[position].name){
+                            if(item.name[0].equals(itemList[position].name)){
                                 item.cnt = item.cnt + text
                                 flag = true
                             }
                         }
-                        if(flag == false) SBList.add(shopping_basket_data(itemList[position].name, itemList[position].price.toString(), itemList[position].img, text))
+                        if(flag == false) {
+                            var name = ArrayList<String>()
+                            name.add(itemList[position].name)
+                            SBList.add(shopping_basket_data(itemList[position].type, name, itemList[position].price.toString(), itemList[position].img, text))
+                        }
+
                         flag = false //장바구니에 아이템 추가(장바구니 데이터 구조 바꿀 필요 있을 듯 함)
 
                         menuActivity.SetPrice()

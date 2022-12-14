@@ -84,11 +84,15 @@ class MainActivity : AppCompatActivity(), SendEventListener {
 
         // 세트메뉴 받아오기
         if (intent.hasExtra("setList")) {
+            var name = ArrayList<String>()
+
             val shoppingBag = intent.getSerializableExtra("setList") as ArrayList<String>
             val totalCost = intent.getIntExtra("totalCost", 0)
             val url = setMenuImg(shoppingBag[0])
 
-            SBList.add(shopping_basket_data("${shoppingBag[0]} 세트", totalCost.toString(), url, 1, 1))
+            name.add("${shoppingBag[0]} 세트")
+
+            SBList.add(shopping_basket_data("set",name, totalCost.toString(), url, 1, 1))
             SetPrice()
         }
 

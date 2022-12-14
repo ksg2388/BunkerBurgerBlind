@@ -53,7 +53,7 @@ class SingleMenuClickedDig(context: Context){
         max = itemData.stock
 
         for(item in SBList){
-            if(item.name == itemData.name){
+            if(item.name.equals(itemData.name[0])){
                 flag = true
                 inStock = item.cnt
             }

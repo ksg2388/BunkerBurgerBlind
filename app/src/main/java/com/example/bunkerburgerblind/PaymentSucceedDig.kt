@@ -6,6 +6,9 @@ import android.content.Intent
 import android.view.WindowManager
 import com.example.bunkerburgerblind.databinding.PaymentSucceedDialogBinding
 import com.example.bunkerburgerblind.databinding.ShoppingBasketDialogBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.security.AccessController.getContext
 
 class PaymentSucceedDig(context: Context) {
@@ -13,10 +16,14 @@ class PaymentSucceedDig(context: Context) {
     lateinit var menuActivity: SimpleMenuActivity
 
     private lateinit var binding: PaymentSucceedDialogBinding
+    lateinit var database: DatabaseReference
 
     private lateinit var onClickListener: PaymentPlaceChoiceDig.ButtonClickListener
 
     fun PHCDig(SBList: ArrayList<shopping_basket_data>){
+        database = Firebase.database.reference
+        val datapath = database.child("bunkerburger").child("menu")
+
         binding = PaymentSucceedDialogBinding.inflate(dialog.layoutInflater)
 
         dialog.setContentView(binding.root)
@@ -30,8 +37,8 @@ class PaymentSucceedDig(context: Context) {
 
         binding.ok.setOnClickListener {
             dialog.dismiss()
-            SBList.clear()
 
+            SBList.clear()
 
             val intent = Intent(dialog.context, MainActivity::class.java)
             dialog.context.startActivity(intent)
