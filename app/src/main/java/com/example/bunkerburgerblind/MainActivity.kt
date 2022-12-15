@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.DialogFragment
+import com.bumptech.glide.Glide
 import com.example.bunkerburgerblind.databinding.ActivityMainBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -46,6 +47,9 @@ class MainActivity : AppCompatActivity(), SendEventListener {
     val itemList = arrayListOf<item_data>()      // 단품 메뉴 아이템 배열
     val listAdapter = ListAdapter(itemList)     // 단품 메뉴 rv 어댑터
     var SBList = arrayListOf<shopping_basket_data>() //장바구니 아이템 배열
+
+    var bestBurger = item_data()
+    var bestSide = item_data()
 
     private val database = Firebase.database
     private val myRef = database.getReference("bunkerburger")
@@ -82,6 +86,9 @@ class MainActivity : AppCompatActivity(), SendEventListener {
         val side = ArrayList<MenuType>()
         val beverage = ArrayList<MenuType>()
 
+        bestBurger.usage = 0
+        bestSide.usage = 0
+
         // 세트메뉴 받아오기
         if (intent.hasExtra("setList")) {
             var name = ArrayList<String>()
@@ -106,17 +113,30 @@ class MainActivity : AppCompatActivity(), SendEventListener {
                 for (item in menu.child("burger").children) {
                     val temp = item.getValue(MenuType::class.java)
                     temp?.let { burger.add(it) }
+
+                    if(bestBurger.usage < item.child("usage").value.toString().toInt()){
+                        bestBurger.usage = item.child("usage").value.toString().toInt()
+                        bestBurger.img = item.child("img").value.toString()
+                        bestBurger.name = item.child("name").value.toString()
+                    }
                 }
 
                 for (item in menu.child("side").children) {
                     val temp = item.getValue(MenuType::class.java)
                     temp?.let { side.add(it) }
+
+                    if(bestSide.usage < item.child("usage").value.toString().toInt()){
+                        bestSide.usage = item.child("usage").value.toString().toInt()
+                        bestSide.img = item.child("img").value.toString()
+                        bestSide.name = item.child("name").value.toString()
+                    }
                 }
 
                 for (item in menu.child("beverage").children) {
                     val temp = item.getValue(MenuType::class.java)
                     temp?.let { beverage.add(it) }
                 }
+                Renew1stOrder()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -280,5 +300,15 @@ class MainActivity : AppCompatActivity(), SendEventListener {
         weatherIcon.setImageResource(resourceID)
     }
 
+    fun Renew1stOrder(){
+        binding.burgerName.text = bestBurger.name
+        binding.sideName.text = bestSide.name
+        Glide.with(this)
+            .load(bestBurger.img)
+            .into(binding.burgerImg)
 
+        Glide.with(this)
+            .load(bestSide.img)
+            .into(binding.sideImg)
+    }
 }

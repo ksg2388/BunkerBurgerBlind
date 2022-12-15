@@ -141,12 +141,14 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/burgerImg"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:src="@drawable/classic_burger" />
 
                     <TextView
+                        android:id="@+id/burgerName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -169,13 +171,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="세트 주문량 1위"
+                        android:text="사이드 주문량 1위"
                         android:textAlignment="center"
                         android:textColor="#606060"
                         android:textSize="25dp"
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/sideImg"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
@@ -183,6 +186,7 @@
                         android:src="@drawable/original_set" />
 
                     <TextView
+                        android:id="@+id/sideName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
