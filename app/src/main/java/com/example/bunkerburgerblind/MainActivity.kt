@@ -91,6 +91,9 @@ class MainActivity : AppCompatActivity(), SendEventListener {
             val url = setMenuImg(shoppingBag[0])
 
             name.add("${shoppingBag[0]} 세트")
+            name.add("${shoppingBag[0]}")
+            name.add("${shoppingBag[1]}")
+            name.add("${shoppingBag[2]}")
 
             SBList.add(shopping_basket_data("set",name, totalCost.toString(), url, 1, 1))
             SetPrice()

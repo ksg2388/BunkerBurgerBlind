@@ -53,7 +53,32 @@ class PaymentSucceedDig(context: Context) {
                         datapaths.child("stock").setValue(stock.toString().toInt() - item.cnt)
                     }
                 }
+                else{
+                    println("1 " + item.name[0] + " 2 " + item.name[1] + " 3 " + item.name[2] + " 4 " + item.name[3])
+                    myRef.get().addOnSuccessListener {
+                        val stock = it.child("burger").child(item.name[1]).child("stock").value
 
+                        println(item.name[1] + " " + stock.toString())
+                        val datapaths = myRef.child("burger").child(item.name[1])
+                        datapaths.child("stock").setValue(stock.toString().toInt() - 1)
+                    }
+
+                    myRef.get().addOnSuccessListener {
+                        val stock = it.child("side").child(item.name[2]).child("stock").value
+
+                        println(item.name[2] + " " + stock.toString())
+                        val datapaths = myRef.child("side").child(item.name[2])
+                        datapaths.child("stock").setValue(stock.toString().toInt() - 1)
+                    }
+
+                    myRef.get().addOnSuccessListener {
+                        val stock = it.child("beverage").child(item.name[3]).child("stock").value
+
+                        println(item.name[3] + " " + stock.toString())
+                        val datapaths = myRef.child("beverage").child(item.name[3])
+                        datapaths.child("stock").setValue(stock.toString().toInt() - 1)
+                    }
+                }
             }
             SBList.clear()
 
