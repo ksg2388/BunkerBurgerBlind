@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity(), SendEventListener {
             val totalCost = intent.getIntExtra("totalCost", 0)
             val url = setMenuImg(shoppingBag[0])
 
-            name.add("${shoppingBag[0]} 세트")
+            name.add("${shoppingBag[0]} 세트") //name 배열에 세트 이름, 버거 이름, 사이드 이름, 음료 이름 순으로 입력하였습니다.
             name.add("${shoppingBag[0]}")
             name.add("${shoppingBag[1]}")
             name.add("${shoppingBag[2]}")
@@ -279,5 +279,6 @@ class MainActivity : AppCompatActivity(), SendEventListener {
         val resourceID = resources.getIdentifier(weather.icon, "drawable", packageName)
         weatherIcon.setImageResource(resourceID)
     }
+
 
 }
