@@ -75,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="세트 주문량 1위"
+                    android:text="사이드 주문량 1위"
                     android:textStyle="bold"/>
 
                 <ImageView

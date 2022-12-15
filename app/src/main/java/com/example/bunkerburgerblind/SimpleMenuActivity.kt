@@ -76,7 +76,6 @@ class SimpleMenuActivity : AppCompatActivity() {
                     burgerList.add(item_data("burger",imageStr, usage.toInt(), name, examination,id.toInt(),price.toInt(), stock.toInt()))
                     listAdapter.notifyDataSetChanged()
                 }
-                Renew1stOrder()
 
                 val side = test.child("side")
                 for (ds in side.children) {
@@ -106,6 +105,7 @@ class SimpleMenuActivity : AppCompatActivity() {
                     listAdapter.notifyDataSetChanged()
                 }
 
+                Renew1stOrder()
                 itemList.addAll(burgerList)
                 itemList.addAll(sideList)
                 itemList.addAll(beverageList)
@@ -158,8 +158,10 @@ class SimpleMenuActivity : AppCompatActivity() {
     fun Renew1stOrder(){
         var singlePosition = 0
         var i = 0
+        var j = 0
         var singleUsage = 0
-        var setPosition = 0
+        var sidePosition = 0
+        var sideUsage = 0
 
         for (item in burgerList){
             if(item.usage > singleUsage) {
@@ -169,10 +171,22 @@ class SimpleMenuActivity : AppCompatActivity() {
             i++
         }
 
+        for (item in sideList){
+            if(item.usage > sideUsage) {
+                sidePosition = j
+                sideUsage = item.usage
+            }
+            j++
+        }
+
         binding.single1stName.text = burgerList[singlePosition].name
         Glide.with(this)
             .load(burgerList[singlePosition].img)
             .into(binding.single1stImg)
-        //세트 주문량 1위 추가 필요(데이터 클래스 및 DB에서 불러오기)
+
+        binding.set1stName.text = sideList[sidePosition].name
+        Glide.with(this)
+            .load(sideList[sidePosition].img)
+            .into(binding.set1stImg)
     }
 }
