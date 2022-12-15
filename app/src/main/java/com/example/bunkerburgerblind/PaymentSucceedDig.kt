@@ -43,22 +43,17 @@ class PaymentSucceedDig(context: Context) {
             dialog.dismiss()
 
             for (item in SBList){
-                println(item.stock)
-                println(item.stock - item.cnt)
-                myRef.addValueEventListener(object: ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val menu = snapshot.child("menu")
+                if(item.type != "set") {
+                    myRef.get().addOnSuccessListener {
+                        val stock = it.child(item.type).child(item.name[0]).child("stock").value
 
-                        val st = menu.child(item.type).child(item.name[0]).child("stock").value
-                        println(st)
-                    }
+                        println(stock.toString() + "!!!!!!!!!!!!!!")
 
-                    override fun onCancelled(error: DatabaseError) {
-                        Log.e("실패", "실패")
+                        val datapaths = myRef.child(item.type).child(item.name[0])
+                        datapaths.child("stock").setValue(stock.toString().toInt() - item.cnt)
                     }
-                })
-                val datapaths = myRef.child(item.type).child(item.name[0])
-                datapaths.child("stock").setValue(600)
+                }
+
             }
             SBList.clear()
 
