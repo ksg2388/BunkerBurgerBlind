@@ -104,9 +104,10 @@
         android:layout_marginBottom="10dp"/>
 
     <TextView
+        android:id="@+id/orderId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="977"
+        android:text="0"
         android:layout_marginHorizontal="30dp"
         android:layout_marginVertical="10dp"
         android:textSize="50sp"
